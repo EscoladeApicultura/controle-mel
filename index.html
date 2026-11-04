@@ -662,7 +662,7 @@ body.gated .fab{display:none}
         <button type="button" data-act="export" id="mExport">Baixar como planilha<small>Cópia de segurança, pode ser importada de volta</small></button>
         <hr>
         <button type="button" data-act="example">Ver o exemplo de outubro/2026<small>Não apaga nada até você editar</small></button>
-        <button type="button" data-act="zero">Começar do zero<small>Apaga os lançamentos, mantém custos e preços</small></button>
+        <button type="button" data-act="zero">Começar do zero<small>Apaga tudo e deixa o app vazio</small></button>
         <hr>
         <div id="acct"></div>
         <button type="button" data-act="logout">Sair da conta<small>Use se o celular não for seu</small></button>
@@ -765,6 +765,19 @@ var EX_CFG = {
     "e5":{preco:38, vendas:15, min:20, repos:0}
   }
 };
+
+/* Configuração vazia: cada mentorado começa do zero e preenche com os seus números */
+var EMPTY_CFG = (function(){
+  var e = JSON.parse(JSON.stringify(EX_CFG));
+  e.baldes.forEach(function(b){ b.kg=0; b.precoKg=0; b.bis500=0; });
+  e.freteBaldes=0; e.perda=0; e.emb500=0; e.emb280=0; e.rotBis=0;
+  e.ent.forEach(function(x){ x.unid=0; x.custo=0; x.emb=0; });
+  e.rotEnt=0; e.rotulosComprados=0; e.freteEnt=0;
+  e.contas.forEach(function(k){ k.valor=0; });
+  Object.keys(e.prod).forEach(function(k){ e.prod[k]={preco:0,vendas:0,min:0,repos:0}; });
+  e.extra=[]; e.hist=[];
+  return e;
+})();
 
 var EX_LANC = [
   ["2026-10-01","Compra de mel em balde","","Balde Uva do Japão 29 kg",29,580,"Pix"],
@@ -909,7 +922,8 @@ function meta(cfg, prods){
   var contas = cfg.contas.reduce(function(a,c){ return a+n(c.valor); },0);
   var unidN = prods.reduce(function(a,p){ return a+p.vendasN; },0);
   var sobraN = prods.reduce(function(a,p){ return a+p.sobraMes; },0);
-  var sm = unidN>0 ? sobraN/unidN : (prods.length ? prods.reduce(function(a,p){ return a+p.sobra; },0)/prods.length : 0);
+  var conf = prods.filter(function(p){ return p.preco>0 && !p.arq; });
+  var sm = unidN>0 ? sobraN/unidN : (conf.length ? conf.reduce(function(a,p){ return a+p.sobra; },0)/conf.length : 0);
   var m = null;
   if(sm>0) m = contas>0 ? Math.ceil(contas/sm - 1e-9) : 0;
   return {contas:contas, unidN:unidN, sobraN:sobraN, sobraMedia:sm, meta:m};
@@ -937,6 +951,7 @@ function enrich(lanc, prods){
       if(p && n(l.qtd) && n(l.valor) && n(l.valor)/n(l.qtd) < p.custo - 0.005)
         iss.push({t:"c", m:"Vendeu abaixo do custo: "+money(n(l.valor)/n(l.qtd))+" por unidade, custo "+money(p.custo)+"."});
     }
+    if(l.cat==="Venda" && p && !(p.custo>0)) iss.push({t:"w", m:"Esse produto ainda está sem custo. Preencha em Custos e preços ou em Lançar → Mudar preço ou custo, para o lucro sair certo."});
     if(l.cat==="Reposição de produto"){
       if(!n(l.qtd)) iss.push({t:"c", m:"Reposição sem quantidade: o estoque não aumenta."});
     }
@@ -964,7 +979,8 @@ function estoque(prods, lancE){
     var repos = p.repos+rl;
     var atual = p.inicial+repos-v-b;
     var inv = (p.inicial+repos)*p.custo;
-    return {p:p, vendidas:v, brindes:b, perdas:perd, reposLanc:rl, reposTot:repos, atual:atual, sit: atual<=0?"Esgotado":(atual<=p.min?"Repor":"OK"),
+    var ativo = p.custo>0 || p.preco>0 || p.inicial>0 || repos>0 || v>0 || b>0;
+    return {p:p, ativo:ativo, vendidas:v, brindes:b, perdas:perd, reposLanc:rl, reposTot:repos, atual:atual, sit: atual<=0?"Esgotado":(atual<=p.min?"Repor":"OK"),
       parado:atual*p.custo, investido:inv, voltou:vol, pct: inv ? vol/inv : 0};
   });
   var t = {inicial:0,repos:0,vendidas:0,brindes:0,atual:0,parado:0,investido:0,voltou:0};
@@ -1015,7 +1031,7 @@ function year(lancE, ano, metaV, prods){
   return ms;
 }
 
-return {EX_CFG:EX_CFG, EX_LANC:EX_LANC, CATS:CATS, CATMAP:CATMAP, PAGS:PAGS, PROD_KEYS:PROD_KEYS, LINHAS:LINHAS, isRet:isRet, needsProd:needsProd,
+return {EX_CFG:EX_CFG, EMPTY_CFG:EMPTY_CFG, EX_LANC:EX_LANC, CATS:CATS, CATMAP:CATMAP, PAGS:PAGS, PROD_KEYS:PROD_KEYS, LINHAS:LINHAS, isRet:isRet, needsProd:needsProd,
   lote:lote, products:products, sugerido:sugerido, SUG_MIN:SUG_MIN, SUG_ALVO:SUG_ALVO, meta:meta, enrich:enrich, estoque:estoque, month:month, year:year, clone:clone, n:n};
 })();
 
@@ -1026,7 +1042,7 @@ return {EX_CFG:EX_CFG, EX_LANC:EX_LANC, CATS:CATS, CATMAP:CATMAP, PAGS:PAGS, PRO
 var C = window.CFM, n = C.n;
 
 /* ================= estado ================= */
-var S = { cfg:C.clone(C.EX_CFG), lanc:C.clone(C.EX_LANC), example:true, hasOwn:false, backup:null,
+var S = { cfg:C.clone(C.EMPTY_CFG), lanc:[], example:false, hasOwn:false, backup:null,
   view:"painel", mes:null, ano:null, lf:{mes:"", cat:"", q:"", alerta:false} };
 var M = {};
 var VIEWS = ["painel","lancar","lancamentos","estoque","resumo","custos","ajuda"];
@@ -1282,7 +1298,7 @@ async function logout(){
   try{ await firebase.auth().signOut(); }catch(e){}
 }
 function resetToExample(){
-  S.cfg=C.clone(C.EX_CFG); S.lanc=C.clone(C.EX_LANC); S.example=true; S.hasOwn=false; S.backup=null; S.mes="2026-10"; S.ano="2026";
+  S.cfg=C.clone(C.EMPTY_CFG); S.lanc=[]; S.example=false; S.hasOwn=false; S.backup=null; S.mes=todayISO().slice(0,7); S.ano=S.mes.slice(0,4);
   P.mode="init"; P.db=null; P.base=null; P.dirtyMonths={}; P.dirtyCfg=false;
 }
 async function loadUser(u){
@@ -1304,6 +1320,7 @@ async function loadUser(u){
       P.mode="db";
       var loc = lsGet(LS_KEY);
       if(loc && loc.cfg){ useOwn(loc.cfg, loc.lanc); markAll(); }
+      else useOwn(C.clone(C.EMPTY_CFG), []);
     }
   }catch(e){
     P.mode="db";
@@ -1351,7 +1368,7 @@ function renderMesSel(){
 }
 function renderBadges(){
   var iss = M.lancE.filter(function(l){ return l.issues.length; }).length;
-  var st = M.est.rows.filter(function(r){ return r.sit!=="OK" && !r.p.arq; }).length;
+  var st = M.est.rows.filter(function(r){ return r.sit!=="OK" && !r.p.arq && r.ativo; }).length;
   $("ctIss").hidden = !iss; $("ctIss").textContent = iss;
   $("ctSt").hidden = !st; $("ctSt").textContent = st;
 }
@@ -1413,7 +1430,9 @@ function vPainel(){
   var acum = yr[mi].reservaAcum;
   var meta = M.meta.meta;
   var head, sub;
-  if(meta===null){ head="Meta indisponível"; sub="A sobra média por unidade está zerada ou negativa. Revise preços e custos na aba Custos e preços."; }
+  var semCusto = !M.prods.some(function(p){ return p.custo>0; });
+  if(meta===null && semCusto){ head="Vamos configurar o seu app"; sub="Preencha os seus custos, preços e contas fixas em Custos e preços, ou cadastre os seus produtos na aba Lançar. Com isso o app calcula a sua meta do mês."; }
+  else if(meta===null){ head="Meta indisponível"; sub="A sobra média por unidade está zerada ou negativa. Revise preços e custos na aba Custos e preços."; }
   else if(r.unid===0){ head="Nenhuma venda lançada neste mês"; sub="A meta é vender "+meta+" unidades para pagar as contas fixas de "+brl(M.meta.contas)+"."; }
   else if(r.unid>=meta){ head="Meta batida"; sub="Vendeu "+r.unid+" unidades, "+(r.unid-meta)+" além das "+meta+" que pagam as contas fixas. Daqui em diante a sobra é lucro."; }
   else { head="Faltam "+(meta-r.unid)+" unidades"; sub="Vendeu "+r.unid+" de "+meta+". Com as "+meta+" unidades as contas fixas de "+brl(M.meta.contas)+" ficam pagas."; }
@@ -1467,7 +1486,7 @@ function waterfall(r){
 function alerts(r){
   var items = [];
   M.est.rows.forEach(function(x){
-    if(x.p.arq) return;
+    if(x.p.arq || !x.ativo) return;
     if(x.sit==="Esgotado") items.push({t:"c", h:x.p.nome+" esgotado", s:"Estoque em "+x.atual+" unidades.", go:"estoque"});
     else if(x.sit==="Repor") items.push({t:"w", h:"Repor "+x.p.nome, s:"Restam "+x.atual+" un. O mínimo é "+x.p.min+".", go:"estoque"});
   });
@@ -1561,7 +1580,9 @@ function vEstoque(){
     '<p class="hint">Quando passar de 100%, o lote já se pagou e o resto é sobra.</p></div>'+
     kpi("Valor parado no estoque", brl(t.parado), "A preço de custo")+
     kpi("Unidades em estoque", num(t.atual), num(t.vendidas)+" vendidas · "+num(t.brindes)+" em brindes e perdas")+'</div>';
-  h += '<div class="prods">'+M.est.rows.filter(function(r){ return !r.p.arq; }).map(function(r){
+  var vis = M.est.rows.filter(function(r){ return !r.p.arq && r.ativo; });
+  if(!vis.length) return h+'<div class="empty">Seu estoque aparece aqui assim que você informar os seus produtos.<br><br><button class="btn sm" type="button" data-v="custos">Preencher Custos e preços</button> <button class="btn sm sec" type="button" data-hub="novo">Cadastrar produto novo</button></div>';
+  h += '<div class="prods">'+vis.map(function(r){
     var p=r.p, cap=Math.max(1,p.inicial+r.reposTot), w=Math.max(0,Math.min(100,r.atual/cap*100)), mk=Math.min(100,p.min/cap*100);
     var chip = r.sit==="OK" ? '<span class="chip ok">OK</span>' : (r.sit==="Repor"?'<span class="chip w">Repor</span>':'<span class="chip c">Esgotado</span>');
     return '<div class="pc"><div class="h"><div style="min-width:0"><b>'+esc(p.nome)+'</b><small>'+esc(p.linha)+'</small></div>'+chip+'</div>'+
@@ -1746,11 +1767,11 @@ function vCustos(){
     '<div class="wfr" style="grid-template-columns:1fr auto"><span>Sobra média por unidade</span><span class="val">'+brl(mt.sobraMedia)+'</span></div>'+
     '<div class="wfr" style="grid-template-columns:1fr auto"><span>Contas fixas do mês</span><span class="val">'+brl(mt.contas)+'</span></div>'+
     '<div class="wfr tot" style="grid-template-columns:1fr auto"><span>Unidades para pagar as contas fixas</span><span class="val">'+(mt.meta===null?"—":mt.meta)+'</span></div></div>'+
-    '<p class="hint">Contas fixas ÷ sobra média, arredondado para cima. Se as vendas do mês normal estiverem zeradas, usa a média simples dos produtos.</p></div>';
+    '<p class="hint">Contas fixas ÷ sobra média, arredondado para cima. Se as vendas do mês normal estiverem zeradas, usa a média simples dos produtos que já têm preço.</p></div>';
   /* 4 */
   var nAb = M.prods.filter(function(p){ return p.abaixoSug; }).length;
   if(isM()){
-    h += '<div class="card full"><h3>4 · Custo, preço e sobra de cada produto</h3><p class="hint" style="margin:-6px 0 10px">Em cada produto, preencha o <b>Preço</b> de venda e as <b>Vendas/mês</b> (quantas unidades você vende num mês normal). <b>Preço mínimo</b> é o custo: nunca venda abaixo dele.</p>'+'<div class="sughint"><b>Preço sugerido</b> = custo + 75% a 80% de lucro sobre o custo, arredondado para um preço redondo, terminando em ,00, ,50 ou ,90 (ex.: custo R$ 10,00 → sugerido R$ 18,00). É um preço que o cliente paga e deixa uma boa sobra. Se na sua região o cliente paga mais, mantenha o seu preço.'+(nAb?'<div style="margin-top:10px"><button class="btn sm" type="button" data-sug-all="1">Usar o sugerido nos '+nAb+' produto'+(nAb>1?"s":"")+' abaixo dele</button></div>':'<div style="margin-top:6px" class="pos">Todos os seus preços já estão no sugerido ou acima.</div>')+'</div>'+'<div class="mcards">'+M.prods.map(function(p){
+    h += '<div class="card full"><h3>4 · Custo, preço e sobra de cada produto</h3><p class="hint" style="margin:-6px 0 10px">Em cada produto, preencha o <b>Preço</b> de venda e as <b>Vendas/mês</b> (quantas unidades você vende num mês normal). <b>Preço mínimo</b> é o custo: nunca venda abaixo dele.</p>'+'<div class="sughint"><b>Preço sugerido</b> = custo + 75% a 80% de lucro sobre o custo, arredondado para um preço redondo, terminando em ,00, ,50 ou ,90 (ex.: custo R$ 10,00 → sugerido R$ 18,00). É um preço que o cliente paga e deixa uma boa sobra. Se na sua região o cliente paga mais, mantenha o seu preço.'+(nAb?'<div style="margin-top:10px"><button class="btn sm" type="button" data-sug-all="1">Usar o sugerido nos '+nAb+' produto'+(nAb>1?"s":"")+' abaixo dele</button></div>':(M.prods.some(function(p){ return p.custo>0; })?'<div style="margin-top:6px" class="pos">Todos os seus preços já estão no sugerido ou acima.</div>':'<div style="margin-top:6px">Preencha os custos acima e o preço sugerido aparece em cada produto.</div>'))+'</div>'+'<div class="mcards">'+M.prods.map(function(p){
       var mf = p.margem>=0.4?"ok":(p.margem>=0.2?"w":"c");
       return '<div class="mcard"><div class="hd"><div><b>'+esc(p.nome)+'</b><small>'+esc(p.linha)+'</small></div><span class="chip '+mf+'">Margem '+pct(p.margem)+'</span></div>'+
         '<div class="br">Custo <b>'+brl(p.custo)+'</b> = mel '+brl(p.mel)+' + frete '+brl(p.frete)+' + embalagem '+brl(p.emb)+' + rótulo '+brl(p.rot)+'</div>'+
@@ -1760,7 +1781,7 @@ function vCustos(){
     }).join("")+'<div class="kv"><div class="strong"><span>Mês normal</span><span>'+num(mt.unidN)+' un. · '+brl(mt.sobraN)+'</span></div></div>'+
       '<p class="hint">Mel fracionado: mel e frete já incluem a perda do fracionamento. Entreposto: frete e rótulo divididos por todas as unidades do lote. Desconto nunca abaixo do custo.</p></div>';
   }else{
-  h += '<div class="card full"><h3>4 · Custo, preço e sobra de cada produto</h3>'+'<div class="sughint"><b>Preço sugerido</b> = custo + 75% a 80% de lucro sobre o custo, arredondado para um preço redondo, terminando em ,00, ,50 ou ,90 (ex.: custo R$ 10,00 → sugerido R$ 18,00). É um preço que o cliente paga e deixa uma boa sobra. Se na sua região o cliente paga mais, mantenha o seu preço.'+(nAb?'<div style="margin-top:10px"><button class="btn sm" type="button" data-sug-all="1">Usar o sugerido nos '+nAb+' produto'+(nAb>1?"s":"")+' abaixo dele</button></div>':'<div style="margin-top:6px" class="pos">Todos os seus preços já estão no sugerido ou acima.</div>')+'</div>'+'<div class="tw"><table class="etable"><thead><tr><th>Produto</th><th>Mel ou produto</th><th>Frete</th><th>Embalagem</th><th>Rótulo</th><th>Custo por unidade</th><th>Preço sugerido</th><th>Preço de venda</th><th>Sobra por unidade</th><th>Margem</th><th>Nunca vender abaixo de</th><th>Vendas num mês normal</th><th>Sobra no mês</th></tr></thead><tbody>';
+  h += '<div class="card full"><h3>4 · Custo, preço e sobra de cada produto</h3>'+'<div class="sughint"><b>Preço sugerido</b> = custo + 75% a 80% de lucro sobre o custo, arredondado para um preço redondo, terminando em ,00, ,50 ou ,90 (ex.: custo R$ 10,00 → sugerido R$ 18,00). É um preço que o cliente paga e deixa uma boa sobra. Se na sua região o cliente paga mais, mantenha o seu preço.'+(nAb?'<div style="margin-top:10px"><button class="btn sm" type="button" data-sug-all="1">Usar o sugerido nos '+nAb+' produto'+(nAb>1?"s":"")+' abaixo dele</button></div>':(M.prods.some(function(p){ return p.custo>0; })?'<div style="margin-top:6px" class="pos">Todos os seus preços já estão no sugerido ou acima.</div>':'<div style="margin-top:6px">Preencha os custos acima e o preço sugerido aparece em cada produto.</div>'))+'</div>'+'<div class="tw"><table class="etable"><thead><tr><th>Produto</th><th>Mel ou produto</th><th>Frete</th><th>Embalagem</th><th>Rótulo</th><th>Custo por unidade</th><th>Preço sugerido</th><th>Preço de venda</th><th>Sobra por unidade</th><th>Margem</th><th>Nunca vender abaixo de</th><th>Vendas num mês normal</th><th>Sobra no mês</th></tr></thead><tbody>';
   M.prods.forEach(function(p){
     var mc = p.margem>=0.4?"rgba(98,214,160,.14)":(p.margem>=0.2?"rgba(242,166,76,.14)":"rgba(240,112,95,.16)");
     var mf = p.margem>=0.4?"var(--ok)":(p.margem>=0.2?"var(--warn)":"var(--crit)");
@@ -1890,8 +1911,8 @@ var TOUR = [
   {t:"Bem-vindo ao seu Controle Financeiro", b:'<p>Este app faz sozinho todas as contas da planilha da mentoria. Você só registra o que <b>vendeu</b> e o que <b>gastou</b>.</p><p>Ele mostra quanto precisa vender no mês, quanto lucrou, quanto ficou guardado e o que está acabando no estoque.</p>'},
   {t:"Funciona em 3 passos", b:'<ol class="tourl"><li><b>Confira Custos e preços</b><span>Uma vez a cada lote: quanto pagou e por quanto vende cada produto.</span></li><li><b>Toque em Lançar</b><span>Sempre que vender ou gastar. É o botão dourado no canto de baixo.</span></li><li><b>Olhe a tela Início</b><span>Meta, lucro, reserva e avisos do mês, tudo num lugar.</span></li></ol>'},
   {t:"Por onde quer começar?", b:'<div class="tourc">'+
-    '<button type="button" class="opt" data-tour-go="ex"><b>Ver o exemplo primeiro</b><span>Explore um mês de outubro já preenchido. Nada é salvo até você editar.</span></button>'+
-    '<button type="button" class="opt" data-tour-go="zero"><b>Começar com os meus números</b><span>Limpa os lançamentos e abre Custos e preços para você preencher.</span></button>'+
+    '<button type="button" class="opt" data-tour-go="custos"><b>Preencher os meus custos e preços</b><span>Comece pelos produtos que você já vende. O app calcula custo, preço sugerido e meta.</span></button>'+
+    '<button type="button" class="opt" data-tour-go="lancar"><b>Cadastrar meus produtos um por um</b><span>Use a aba Lançar: nome, quanto paga e quantas unidades tem.</span></button>'+
     '<button type="button" class="opt" data-tour-go="import"><b>Já uso a planilha do Excel</b><span>Traga o seu arquivo .xlsx e continue de onde parou.</span></button></div>'}
 ];
 function openTour(i){
@@ -2488,14 +2509,15 @@ function act(a){
     if(S.example && S.hasOwn){ toast("Volte aos seus dados antes."); return; }
     var qt = S.example ? 0 : S.lanc.length;
     confirmSheet("Começar do zero",
-      '<p style="margin:0">'+(qt?'Isso apaga <b>'+qt+' lançamentos</b>. ':'')+'Custos, preços e contas fixas continuam como estão, para você ajustar com os seus números.</p>'+(qt?'<div class="flag c">Não dá para desfazer. Se quiser guardar uma cópia, baixe a planilha antes.</div>':''),
-      qt?"Apagar lançamentos":"Começar", !!qt,
+      '<p style="margin:0">Isso apaga '+(qt?'<b>'+qt+' lançamento'+(qt===1?'':'s')+'</b>, ':'')+'os custos, os preços, as contas fixas e os produtos cadastrados. O app fica vazio para você preencher com os seus números.</p><div class="flag c">Não dá para desfazer. Se quiser guardar uma cópia, baixe a planilha antes (⋯ → Baixar como planilha).</div>',
+      "Apagar tudo", true,
       function(){
         var olds = storedMonths();
         if(S.example){ S.example=false; S.hasOwn=true; }
+        S.cfg=C.clone(C.EMPTY_CFG);
         S.lanc=[]; S.mes=todayISO().slice(0,7); S.ano=S.mes.slice(0,4);
         markMonths(olds); markCfg();
-        refreshStatus(); renderAll(); setView("custos"); toast("Pronto. Comece revisando seus custos e preços.");
+        refreshStatus(); renderAll(); setView("custos"); toast("Pronto. O app está zerado: comece pelos seus custos e preços.");
       });
   }
 }
@@ -2700,7 +2722,7 @@ document.addEventListener("click", function(e){
   if(c("#gCopy")){ var lk=location.href.split("#")[0]; try{ navigator.clipboard.writeText(lk).then(function(){ toast("Link copiado. Cole no Chrome ou no Safari."); }, function(){ toast(lk); }); }catch(_){ toast(lk); } return; }
   if((x=c("[data-tour-step]"))){ F.step=Number(x.getAttribute("data-tour-step")); renderTour(); return; }
   if(c("[data-tour-end]")){ endTour(); return; }
-  if((x=c("[data-tour-go]"))){ var go=x.getAttribute("data-tour-go"); endTour(); if(go==="ex"){ setView("painel"); } else act(go); return; }
+  if((x=c("[data-tour-go]"))){ var go=x.getAttribute("data-tour-go"); endTour(); if(go==="custos"||go==="lancar"||go==="painel"){ setView(go); } else act(go); return; }
   if((x=c("[data-sug]"))){ applySug([x.getAttribute("data-sug")]); return; }
   if(c("[data-sug-all]")){ applySug(M.prods.filter(function(p){ return p.abaixoSug; }).map(function(p){ return p.key; })); return; }
   if(c("[data-usesug]") && F && F.gen){ readGen(); var pp=M.pm[F.vals.prod]; if(pp){ var r0=buyRef(pp), nc0 = pp.extra ? n(F.vals.custo)+n(F.vals.emb)+n(F.vals.rot)+n(F.vals.frete) : (r0 ? pp.custo-r0.get()+n(F.vals.custo) : pp.custo); F.vals.preco=C.sugerido(nc0); delete F.vals.precoRaw; renderGen(); } return; }
@@ -2772,7 +2794,7 @@ function loopHex(t){ drawHex(t); if(!reduce) requestAnimationFrame(loopHex); }
 
 /* ================= início ================= */
 var hv=(location.hash||"").slice(1); if(VIEWS.indexOf(hv)>=0) S.view=hv;
-S.mes="2026-10"; S.ano="2026";
+S.mes=todayISO().slice(0,7); S.ano=S.mes.slice(0,4);
 renderAll(); refreshStatus(); status("busy","Carregando");
 sizeHex(); if(!reduce && hx) requestAnimationFrame(loopHex);
 var rt, lastM=isM(), lastW=window.innerWidth; window.addEventListener("resize",function(){ clearTimeout(rt); rt=setTimeout(function(){ setM(); sizeHex(); var m=isM(); if(m!==lastM || (m && S.view==="resumo" && Math.abs(window.innerWidth-lastW)>40)){ lastM=m; lastW=window.innerWidth; if(!F) renderView(); } },150); });
