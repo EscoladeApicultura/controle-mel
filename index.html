@@ -419,13 +419,13 @@ html.is-m .contarow{grid-template-columns:minmax(0,1fr);gap:6px;padding-bottom:1
   .topr .sel{flex:1;width:auto!important;min-width:0}
   .pill{padding:7px 10px}
   .tabs{position:fixed;top:auto;left:0;right:0;bottom:0;margin:0;border-radius:0;border:0;border-top:1px solid var(--line2);z-index:45;
-    display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;padding:6px max(4px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-right,0px));
+    display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;padding:6px max(4px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-right,0px));
     background:rgba(14,11,8,.96);overflow:visible}
   .tab{flex-direction:column;gap:3px;padding:6px 2px;border-radius:12px;font-size:10.5px;font-weight:600;min-width:0}
   .tab .ti{width:21px;height:21px}
   .tab .tl{display:none}
   .tab .ts{display:block}
-  .tab[data-v="painel"] .tl,.tab[data-v="estoque"] .tl{display:block}
+  .tab[data-v="painel"] .tl,.tab[data-v="estoque"] .tl,.tab[data-v="lancar"] .tl{display:block}
   .tab[aria-selected="true"]{background:rgba(243,178,58,.14);color:var(--gold2)}
   .tab .ct{position:absolute;top:2px;left:calc(50% + 6px);margin:0;min-width:16px;font-size:9.5px;line-height:16px}
   .fab{bottom:calc(76px + env(safe-area-inset-bottom,0px));right:calc(14px + env(safe-area-inset-right,0px));padding:14px}
@@ -507,13 +507,13 @@ html.is-m .topr{width:100%;flex-wrap:nowrap}
 html.is-m .topr .sel{flex:1;width:auto!important;min-width:0}
 html.is-m .pill{padding:7px 10px}
 html.is-m .tabs{position:fixed;top:auto;left:0;right:0;bottom:0;margin:0;border-radius:0;border:0;border-top:1px solid var(--line2);z-index:45;
-    display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;padding:6px max(4px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-right,0px));
+    display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;padding:6px max(4px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-right,0px));
     background:rgba(14,11,8,.96);overflow:visible}
 html.is-m .tab{flex-direction:column;gap:3px;padding:6px 2px;border-radius:12px;font-size:10.5px;font-weight:600;min-width:0}
 html.is-m .tab .ti{width:21px;height:21px}
 html.is-m .tab .tl{display:none}
 html.is-m .tab .ts{display:block}
-html.is-m .tab[data-v="painel"] .tl,html.is-m .tab[data-v="estoque"] .tl{display:block}
+html.is-m .tab[data-v="painel"] .tl,html.is-m .tab[data-v="estoque"] .tl,html.is-m .tab[data-v="lancar"] .tl{display:block}
 html.is-m .tab[aria-selected="true"]{background:rgba(243,178,58,.14);color:var(--gold2)}
 html.is-m .tab .ct{position:absolute;top:2px;left:calc(50% + 6px);margin:0;min-width:16px;font-size:9.5px;line-height:16px}
 html.is-m .fab{bottom:calc(76px + env(safe-area-inset-bottom,0px));right:calc(14px + env(safe-area-inset-right,0px));padding:14px}
@@ -561,6 +561,39 @@ html.is-m .balde .grid2 .f:first-child{grid-column:1/-1}
 html.is-m .calcs .calc{font-size:12.5px}
 html.is-xs .kpis{grid-template-columns:minmax(0,1fr)}
 html.is-xs .tab{font-size:9.5px}
+
+/* aba Lançar */
+body.v-lancar .fab{display:none}
+.hubg{margin-bottom:18px}
+.hubg>.eyebrow{margin:0 0 10px}
+.hubgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.hubc{display:flex;align-items:center;gap:12px;text-align:left;padding:14px;border-radius:16px;border:1px solid var(--line);background:var(--panel);min-width:0}
+.hubc:hover,.hubc:focus-visible{border-color:var(--gold);background:rgba(243,178,58,.08)}
+.hubc b{display:block;font-size:15px;color:var(--fg)}
+.hubc small{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.hubc>span:last-child{min-width:0}
+.hi{display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:12px;background:rgba(243,178,58,.12);color:var(--gold2)}
+.hi svg{width:22px;height:22px}
+.ch{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.ch h3{margin:0}
+.plist{display:flex;flex-direction:column;gap:6px}
+.prow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;text-align:left;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.18)}
+.prow:hover,.prow:focus-visible{border-color:var(--line2);background:var(--panel2)}
+.prow .pl b{display:block;font-weight:600;font-size:14px;overflow-wrap:anywhere}
+.prow .pl small{display:block;font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.prow .pr{text-align:right;white-space:nowrap}
+.prow .pr b{display:block;font:600 14px var(--f-mono);font-variant-numeric:tabular-nums}
+.prow .pr small{display:block;font-size:11.5px;color:var(--muted)}
+.arqd{margin-top:12px}
+.arqd summary{cursor:pointer;color:var(--muted);font-size:13.5px;margin-bottom:8px}
+.hist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.hist li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.hist li span:first-child{color:var(--dim)}
+.hist li span:last-child{overflow-wrap:anywhere}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;cursor:pointer}
+.chk input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--gold);flex:none}
+@media (max-width:700px){ .hubgrid{grid-template-columns:minmax(0,1fr)} .hubc{padding:12px} .hi{width:38px;height:38px} }
+html.is-m .hubgrid{grid-template-columns:minmax(0,1fr)}
 
 /* tela de entrada */
 .gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;overflow-y:auto;
@@ -630,6 +663,7 @@ body.gated .fab{display:none}
 
   <nav class="tabs" role="tablist" aria-label="Seções">
     <button class="tab" role="tab" data-v="painel" id="t-painel" aria-selected="true"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span class="tl">Início</span></button>
+    <button class="tab" role="tab" data-v="lancar" id="t-lancar" aria-selected="false"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><span class="tl">Lançar</span></button>
     <button class="tab" role="tab" data-v="lancamentos" id="t-lancamentos" aria-selected="false"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span class="tl">Vendas e gastos</span><span class="ts">Vendas</span><span class="ct" id="ctIss" hidden></span></button>
     <button class="tab" role="tab" data-v="estoque" id="t-estoque" aria-selected="false"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg><span class="tl">Estoque</span><span class="ct" id="ctSt" hidden></span></button>
     <button class="tab" role="tab" data-v="resumo" id="t-resumo" aria-selected="false"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="tl">Resumo do ano</span><span class="ts">Resumo</span></button>
@@ -756,8 +790,10 @@ var CATS = [
   ["Venda","Entrada","Venda de produto. Escolha o produto e a quantidade."],
   ["Outra entrada","Entrada","Qualquer outra entrada do negócio."],
   ["Brinde/uso próprio","Retirada","Produto que saiu sem venda. Não precisa de valor."],
+  ["Perda/quebra","Retirada","Produto que quebrou, venceu ou se perdeu. Sai do estoque a preço de custo."],
   ["Compra de mel em balde","Compra para estoque","Baldes de mel. Quantidade em kg."],
   ["Compra de produtos","Compra para estoque","Produtos do entreposto. Quantidade em unidades."],
+  ["Reposição de produto","Compra para estoque","Compra de mais unidades de um produto que você já vende. Soma no estoque sozinho."],
   ["Embalagens","Compra para estoque","Bisnagas e embalagens do composto e dos extratos."],
   ["Rótulos","Compra para estoque","Rótulos das bisnagas e dos produtos do entreposto."],
   ["Frete das compras","Compra para estoque","Frete dos baldes e do entreposto."],
@@ -773,6 +809,9 @@ var CATS = [
 var CATMAP = {}; CATS.forEach(function(c){ CATMAP[c[0]] = c[1]; });
 var PAGS = ["Pix","Dinheiro","Cartão","Transferência","Boleto"];
 var PROD_KEYS = ["b0-500","b0-280","b1-500","b1-280","e0","e1","e2","e3","e4","e5"];
+var LINHAS = ["Mel fracionado","Entreposto","Outros produtos"];
+function isRet(cat){ return CATMAP[cat]==="Retirada"; }
+function needsProd(cat){ return cat==="Venda" || isRet(cat) || cat==="Reposição de produto"; }
 
 function n(v){ v = Number(v); return isFinite(v) ? v : 0; }
 function clone(o){ return JSON.parse(JSON.stringify(o)); }
@@ -812,6 +851,13 @@ function products(cfg){
   });
   cfg.ent.forEach(function(e,i){
     out.push(mk(cfg, "e"+i, e.nome||("Produto "+(i+1)), "Entreposto", n(e.custo), L.freteUnit, n(e.emb), n(cfg.rotEnt), n(e.unid)));
+  });
+  /* produtos cadastrados pelo mentorado */
+  (cfg.extra||[]).forEach(function(x){
+    var linha = LINHAS.indexOf(x.linha)>=0 ? x.linha : "Outros produtos";
+    var p = mk(cfg, "n"+x.id, x.nome||"Produto novo", linha, n(x.custo), n(x.frete), n(x.emb), n(x.rot), n(x.inicial));
+    p.extra = true; p.arq = !!x.arq; p.xid = x.id;
+    out.push(p);
   });
   return out;
 }
@@ -853,13 +899,13 @@ function enrich(lanc, prods){
   var pm = {}; prods.forEach(function(p){ pm[p.key]=p; });
   return lanc.map(function(l){
     var e = {}; for(var k in l) e[k]=l[k];
-    var isProd = l.cat==="Venda" || l.cat==="Brinde/uso próprio";
+    var isProd = needsProd(l.cat), saiProd = l.cat==="Venda" || isRet(l.cat);
     var p = l.prod ? pm[l.prod] : null;
     e.gaveta = !l.cat ? "" : (isProd && !l.prod) ? "Falta o produto" : (CATMAP[l.cat] || "Categoria inválida");
     e.mes = (l.data||"").slice(0,7);
     e.linha = l.prod ? (p ? p.linha : "Produto inválido") : "";
     e.pnome = p ? p.nome : (l.prodNome || "");
-    e.custo = (isProd && p) ? n(l.qtd)*p.custo : 0;
+    e.custo = (saiProd && p) ? n(l.qtd)*p.custo : 0;
     var iss = [];
     if(!CATMAP[l.cat]) iss.push({t:"c", m:"Categoria \""+(l.cat||"vazia")+"\" não existe na lista."});
     if(isProd && !l.prod) iss.push({t:"c", m:"Falta escolher o produto."});
@@ -870,9 +916,13 @@ function enrich(lanc, prods){
       if(p && n(l.qtd) && n(l.valor) && n(l.valor)/n(l.qtd) < p.custo - 0.005)
         iss.push({t:"c", m:"Vendeu abaixo do custo: "+money(n(l.valor)/n(l.qtd))+" por unidade, custo "+money(p.custo)+"."});
     }
-    if(l.cat==="Brinde/uso próprio" && n(l.valor)>0)
+    if(l.cat==="Reposição de produto"){
+      if(!n(l.qtd)) iss.push({t:"c", m:"Reposição sem quantidade: o estoque não aumenta."});
+    }
+    if(isRet(l.cat) && !n(l.qtd)) iss.push({t:"w", m:"Falta a quantidade que saiu do estoque."});
+    if(isRet(l.cat) && n(l.valor)>0)
       iss.push({t:"w", m:"Brinde com valor de "+money(n(l.valor))+". Esse dinheiro não entra nas vendas. Se foi venda, troque a categoria para Venda."});
-    if(!isProd && CATMAP[l.cat] && !n(l.valor)) iss.push({t:"w", m:"Lançamento sem valor."});
+    if(!isProd && !isRet(l.cat) && CATMAP[l.cat] && !n(l.valor)) iss.push({t:"w", m:"Lançamento sem valor."});
     if(!l.data) iss.push({t:"c", m:"Sem data."});
     e.issues = iss;
     return e;
@@ -883,26 +933,28 @@ function money(v){ return "R$ "+n(v).toFixed(2).replace(".",",").replace(/\B(?=(
 /* Aba Estoque */
 function estoque(prods, lancE){
   var rows = prods.map(function(p){
-    var v=0,b=0,vol=0;
+    var v=0,b=0,vol=0,rl=0,perd=0;
     lancE.forEach(function(l){
       if(l.prod!==p.key) return;
       if(l.cat==="Venda"){ v+=n(l.qtd); vol+=n(l.valor); }
-      else if(l.cat==="Brinde/uso próprio"){ b+=n(l.qtd); }
+      else if(isRet(l.cat)){ b+=n(l.qtd); if(l.cat==="Perda/quebra") perd+=n(l.qtd); }
+      else if(l.cat==="Reposição de produto"){ rl+=n(l.qtd); }
     });
-    var atual = p.inicial+p.repos-v-b;
-    var inv = (p.inicial+p.repos)*p.custo;
-    return {p:p, vendidas:v, brindes:b, atual:atual, sit: atual<=0?"Esgotado":(atual<=p.min?"Repor":"OK"),
+    var repos = p.repos+rl;
+    var atual = p.inicial+repos-v-b;
+    var inv = (p.inicial+repos)*p.custo;
+    return {p:p, vendidas:v, brindes:b, perdas:perd, reposLanc:rl, reposTot:repos, atual:atual, sit: atual<=0?"Esgotado":(atual<=p.min?"Repor":"OK"),
       parado:atual*p.custo, investido:inv, voltou:vol, pct: inv ? vol/inv : 0};
   });
   var t = {inicial:0,repos:0,vendidas:0,brindes:0,atual:0,parado:0,investido:0,voltou:0};
-  rows.forEach(function(r){ t.inicial+=r.p.inicial; t.repos+=r.p.repos; t.vendidas+=r.vendidas; t.brindes+=r.brindes; t.atual+=r.atual; t.parado+=r.parado; t.investido+=r.investido; t.voltou+=r.voltou; });
+  rows.forEach(function(r){ t.inicial+=r.p.inicial; t.repos+=r.reposTot; t.vendidas+=r.vendidas; t.brindes+=r.brindes; t.atual+=r.atual; t.parado+=r.parado; t.investido+=r.investido; t.voltou+=r.voltou; });
   t.pct = t.investido ? t.voltou/t.investido : 0;
   return {rows:rows, tot:t};
 }
 
 /* Aba Resumo do mês */
 function month(lancE, mes, metaV, prods){
-  var r = {mes:mes, vf:0, ve:0, out:0, cpv:0, dv:0, br:0, cf:0, sal:0, compras:0, unid:0, porProd:{}};
+  var r = {mes:mes, vf:0, ve:0, vo:0, out:0, cpv:0, dv:0, br:0, cf:0, sal:0, compras:0, unid:0, porProd:{}};
   prods.forEach(function(p){ r.porProd[p.key]=0; });
   lancE.forEach(function(l){
     if(l.mes!==mes) return;
@@ -910,17 +962,18 @@ function month(lancE, mes, metaV, prods){
     if(l.cat==="Venda"){
       if(l.linha==="Mel fracionado") r.vf+=v;
       if(l.linha==="Entreposto") r.ve+=v;
+      if(l.linha==="Outros produtos") r.vo+=v;
       r.cpv += l.custo; r.unid += n(l.qtd);
       if(l.prod && r.porProd[l.prod]!==undefined) r.porProd[l.prod]+=n(l.qtd);
     }
     if(l.cat==="Outra entrada") r.out+=v;
-    if(l.cat==="Brinde/uso próprio") r.br+=l.custo;
+    if(isRet(l.cat)) r.br+=l.custo;
     if(l.gaveta==="Despesa variável") r.dv+=v;
     if(l.gaveta==="Conta fixa") r.cf+=v;
     if(l.gaveta==="Salário") r.sal+=v;
     if(l.gaveta==="Compra para estoque") r.compras+=v;
   });
-  r.total = r.vf+r.ve+r.out;
+  r.total = r.vf+r.ve+r.vo+r.out;
   r.sobra = r.total-r.cpv-r.dv-r.br;
   r.lucro = r.sobra-r.cf;
   r.reserva = r.lucro-r.sal;
@@ -941,7 +994,7 @@ function year(lancE, ano, metaV, prods){
   return ms;
 }
 
-return {EX_CFG:EX_CFG, EX_LANC:EX_LANC, CATS:CATS, CATMAP:CATMAP, PAGS:PAGS, PROD_KEYS:PROD_KEYS,
+return {EX_CFG:EX_CFG, EX_LANC:EX_LANC, CATS:CATS, CATMAP:CATMAP, PAGS:PAGS, PROD_KEYS:PROD_KEYS, LINHAS:LINHAS, isRet:isRet, needsProd:needsProd,
   lote:lote, products:products, sugerido:sugerido, SUG_MIN:SUG_MIN, SUG_ALVO:SUG_ALVO, meta:meta, enrich:enrich, estoque:estoque, month:month, year:year, clone:clone, n:n};
 })();
 
@@ -955,7 +1008,7 @@ var C = window.CFM, n = C.n;
 var S = { cfg:C.clone(C.EX_CFG), lanc:C.clone(C.EX_LANC), example:true, hasOwn:false, backup:null,
   view:"painel", mes:null, ano:null, lf:{mes:"", cat:"", q:"", alerta:false} };
 var M = {};
-var VIEWS = ["painel","lancamentos","estoque","resumo","custos","ajuda"];
+var VIEWS = ["painel","lancar","lancamentos","estoque","resumo","custos","ajuda"];
 
 function compute(){
   M.prods = C.products(S.cfg);
@@ -1098,10 +1151,13 @@ function normCfg(c){
   while(out.ent.length<6) out.ent.push({nome:"Produto "+(out.ent.length+1),unid:0,custo:0,emb:0});
   out.ent=out.ent.slice(0,6);
   if(!Array.isArray(out.contas)) out.contas=d.contas;
-  while(out.contas.length<5) out.contas.push({nome:"Outra conta",valor:0});
-  out.contas=out.contas.slice(0,5);
+  out.contas = out.contas.filter(function(k){ return k && typeof k==="object"; }).slice(0,30);
   if(!out.prod||typeof out.prod!=="object") out.prod={};
   C.PROD_KEYS.forEach(function(k){ if(!out.prod[k]) out.prod[k]={preco:0,vendas:0,min:0,repos:0}; });
+  if(!Array.isArray(out.extra)) out.extra=[];
+  out.extra = out.extra.filter(function(x){ return x && typeof x==="object" && x.id; }).slice(0,60);
+  out.extra.forEach(function(x){ if(!out.prod["n"+x.id]) out.prod["n"+x.id]={preco:0,vendas:0,min:0,repos:0}; });
+  if(!Array.isArray(out.hist)) out.hist=[];
   return out;
 }
 function normLanc(arr){
@@ -1231,7 +1287,7 @@ function renderMesSel(){
 }
 function renderBadges(){
   var iss = M.lancE.filter(function(l){ return l.issues.length; }).length;
-  var st = M.est.rows.filter(function(r){ return r.sit!=="OK"; }).length;
+  var st = M.est.rows.filter(function(r){ return r.sit!=="OK" && !r.p.arq; }).length;
   $("ctIss").hidden = !iss; $("ctIss").textContent = iss;
   $("ctSt").hidden = !st; $("ctSt").textContent = st;
 }
@@ -1259,6 +1315,7 @@ function renderView(){
   var v = S.view, h="";
   if(v==="painel") h=vPainel();
   else if(v==="lancamentos") h=vLanc();
+  else if(v==="lancar") h=vLancar();
   else if(v==="estoque") h=vEstoque();
   else if(v==="resumo") h=vResumo();
   else if(v==="ajuda") h=vAjuda();
@@ -1266,6 +1323,7 @@ function renderView(){
   $("view").innerHTML = h;
   var vh=$("view").querySelector(".vhead"); if(vh) vh.insertAdjacentHTML("afterend", guide(v));
   VIEWS.forEach(function(k){ $("t-"+k).setAttribute("aria-selected", String(k===v)); });
+  document.body.classList.toggle("v-lancar", v==="lancar");
   var keep = lastFocusId || f;
   lastFocusId = null;
   if(keep && $(keep) && $("view").contains($(keep))){ try{ $(keep).focus(); if($(keep).select && $(keep).tagName==="INPUT") $(keep).select(); }catch(e){} }
@@ -1304,7 +1362,7 @@ function vPainel(){
   h += '<div class="kpis">'+
     kpi("2º · Lucro do mês", brl(r.lucro), r.total? pct(r.lucroPct)+" das vendas" : "Sem vendas no mês", r.lucro<0?"neg":"", true)+
     kpi("3º · Ficou na reserva", brl(r.reserva), "Acumulado no ano: "+brl(acum), r.reserva<0?"neg":"")+
-    kpi("Vendas do mês", brl(r.total), "Mel fracionado "+brl(r.vf)+" · entreposto "+brl(r.ve))+
+    kpi("Vendas do mês", brl(r.total), "Mel fracionado "+brl(r.vf)+" · entreposto "+brl(r.ve)+(r.vo?" · outros "+brl(r.vo):""))+
     kpi("Caixa do mês", brl(r.caixa), "Entrou "+brl(r.total)+" · saiu "+brl(r.compras+r.saiu), r.caixa<0?"neg":"")+
   '</div>';
   if(r.caixa<0 && r.lucro>0){
@@ -1329,7 +1387,7 @@ function waterfall(r){
     ["Vendas", r.total, "in"],
     ["Custo dos produtos vendidos", -r.cpv, "out"],
     ["Taxas e despesas variáveis", -r.dv, "out"],
-    ["Brindes e uso próprio (a custo)", -r.br, "out"],
+    ["Brindes, perdas e uso próprio (a custo)", -r.br, "out"],
     ["Sobra das vendas", r.sobra, "tot"],
     ["Contas fixas", -r.cf, "out"],
     ["Lucro do mês", r.lucro, "tot"],
@@ -1345,6 +1403,7 @@ function waterfall(r){
 function alerts(r){
   var items = [];
   M.est.rows.forEach(function(x){
+    if(x.p.arq) return;
     if(x.sit==="Esgotado") items.push({t:"c", h:x.p.nome+" esgotado", s:"Estoque em "+x.atual+" unidades.", go:"estoque"});
     else if(x.sit==="Repor") items.push({t:"w", h:"Repor "+x.p.nome, s:"Restam "+x.atual+" un. O mínimo é "+x.p.min+".", go:"estoque"});
   });
@@ -1431,25 +1490,27 @@ function vLanc(){
 /* ================= ESTOQUE ================= */
 function vEstoque(){
   var t = M.est.tot;
-  var h = '<div class="vhead"><div><div class="eyebrow">Estoque</div><h2 class="vt">O que tem na prateleira</h2><p class="vsub">Calculado a partir do lote e das vendas lançadas. Você preenche só a reposição e o estoque mínimo.</p></div></div>';
+  var h = '<div class="vhead"><div><div class="eyebrow">Estoque</div><h2 class="vt">O que tem na prateleira</h2><p class="vsub">Calculado sozinho a partir do lote, das compras, das vendas, dos brindes e das perdas que você lança. Você só define o estoque mínimo.</p></div></div>';
   h += '<div class="stocksum"><div class="card"><div class="eyebrow">Do dinheiro investido nos produtos, já voltou</div>'+
     '<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:8px"><b class="goldtxt" style="font:800 clamp(34px,5vw,52px)/1 var(--f-display)">'+pct(t.pct)+'</b><span class="num" style="color:var(--muted)">'+brl(t.voltou)+' de '+brl(t.investido)+'</span></div>'+
     '<div class="payback"><b style="width:'+Math.min(100,t.pct*100).toFixed(1)+'%"></b></div>'+
     '<p class="hint">Quando passar de 100%, o lote já se pagou e o resto é sobra.</p></div>'+
     kpi("Valor parado no estoque", brl(t.parado), "A preço de custo")+
-    kpi("Unidades em estoque", num(t.atual), num(t.vendidas)+" vendidas · "+num(t.brindes)+" em brindes")+'</div>';
-  h += '<div class="prods">'+M.est.rows.map(function(r){
-    var p=r.p, cap=Math.max(1,p.inicial+p.repos), w=Math.max(0,Math.min(100,r.atual/cap*100)), mk=Math.min(100,p.min/cap*100);
+    kpi("Unidades em estoque", num(t.atual), num(t.vendidas)+" vendidas · "+num(t.brindes)+" em brindes e perdas")+'</div>';
+  h += '<div class="prods">'+M.est.rows.filter(function(r){ return !r.p.arq; }).map(function(r){
+    var p=r.p, cap=Math.max(1,p.inicial+r.reposTot), w=Math.max(0,Math.min(100,r.atual/cap*100)), mk=Math.min(100,p.min/cap*100);
     var chip = r.sit==="OK" ? '<span class="chip ok">OK</span>' : (r.sit==="Repor"?'<span class="chip w">Repor</span>':'<span class="chip c">Esgotado</span>');
     return '<div class="pc"><div class="h"><div style="min-width:0"><b>'+esc(p.nome)+'</b><small>'+esc(p.linha)+'</small></div>'+chip+'</div>'+
       '<div class="big num '+(r.atual<0?"neg":"")+'">'+num(r.atual)+'<small>un. em estoque</small></div>'+
       '<div class="meter" title="Estoque atual de '+num(cap)+' (lote + reposição). Marca: estoque mínimo."><b class="'+(r.sit==="Esgotado"?"out":(r.sit==="Repor"?"low":""))+'" style="width:'+w.toFixed(1)+'%"></b><i style="left:'+mk.toFixed(1)+'%"></i></div>'+
-      '<div class="row"><div class="mini">Vendidas<b>'+num(r.vendidas)+'</b></div><div class="mini">Brindes e uso próprio<b>'+num(r.brindes)+'</b></div>'+
+      '<div class="row"><div class="mini">Vendidas<b>'+num(r.vendidas)+'</b></div><div class="mini">Brindes e perdas<b>'+num(r.brindes)+'</b></div>'+
+      '<div class="mini">Compras lançadas<b>'+num(r.reposLanc)+'</b></div><div class="mini">Estoque inicial<b>'+num(p.inicial)+'</b></div>'+
       '<div class="mini">Custo por unidade<b>'+brl(p.custo)+'</b></div><div class="mini">Já voltou em vendas<b>'+pct(r.pct)+'</b></div></div>'+
-      '<div class="ins"><label class="f" for="rp-'+p.key+'">Reposição (un.)<input class="inp num yel" id="rp-'+p.key+'" inputmode="numeric" data-path="prod.'+p.key+'.repos" data-kind="int" value="'+fmtIn(p.repos)+'"></label>'+
+      '<button class="btn sm sec" type="button" data-hub="repo" data-key="'+p.key+'">Comprei mais deste produto</button>'+
+      '<div class="ins"><label class="f" for="rp-'+p.key+'">Ajuste manual (un.)<input class="inp num yel" id="rp-'+p.key+'" inputmode="numeric" data-path="prod.'+p.key+'.repos" data-kind="int" value="'+fmtIn(p.repos)+'"></label>'+
       '<label class="f" for="mn-'+p.key+'">Estoque mínimo<input class="inp num yel" id="mn-'+p.key+'" inputmode="numeric" data-path="prod.'+p.key+'.min" data-kind="int" value="'+fmtIn(p.min)+'"></label></div></div>';
   }).join("")+'</div>';
-  h += '<p class="hint">Estoque inicial: produtos do entreposto vêm das unidades do lote; mel fracionado vem das bisnagas calculadas no fracionamento. Reposição: some as unidades de cada compra nova.</p>';
+  h += '<p class="hint">Estoque inicial: produtos do entreposto vêm das unidades do lote; mel fracionado vem das bisnagas calculadas no fracionamento; produtos novos, do que você informou no cadastro. Compras lançadas em <b>Lançar → Comprei mais mercadoria</b> somam sozinhas. Use o <b>Ajuste manual</b> só para corrigir uma contagem.</p>';
   return h;
 }
 
@@ -1466,8 +1527,8 @@ function vResumo(){
     '<div class="legend"><span><i style="background:linear-gradient(180deg,#ffdc93,#b8620f)"></i>Lucro do mês</span><span><i style="background:#f0705f"></i>Prejuízo</span><span><i style="background:#62d6a0;height:3px;vertical-align:3px"></i>Reserva acumulada</span></div></div>';
   var rowsDef = [
     ["sec","LUCRO DO MÊS"],
-    ["Vendas de mel fracionado","vf"],["Vendas do entreposto","ve"],["Outras entradas","out"],["Total de vendas","total","strong"],
-    ["(−) Custo dos produtos vendidos","cpv"],["(−) Taxa maquininha e despesas variáveis","dv"],["(−) Brindes e uso próprio (a preço de custo)","br"],
+    ["Vendas de mel fracionado","vf"],["Vendas do entreposto","ve"],["Vendas de outros produtos","vo"],["Outras entradas","out"],["Total de vendas","total","strong"],
+    ["(−) Custo dos produtos vendidos","cpv"],["(−) Taxa maquininha e despesas variáveis","dv"],["(−) Brindes, perdas e uso próprio (a preço de custo)","br"],
     ["Sobra das vendas","sobra","strong"],["(−) Contas fixas","cf"],["Lucro do mês","lucro","strong"],["Salário","sal"],["Ficou na reserva","reserva","strong"],["Reserva acumulada no ano","reservaAcum","acc"],
     ["sec","CAIXA DO MÊS (conta PJ)"],
     ["Entrou no caixa","total"],["Saiu para comprar estoque","compras"],["Saiu em despesas e salário","saiu"],["Saldo do caixa no mês","caixa","strong"],["Saldo do caixa acumulado no ano","caixaAcum","acc"],
@@ -1602,11 +1663,16 @@ function vCustos(){
     '<div class="grid3" style="margin-top:12px">'+field("Rótulo (R$/un.)","re","rotEnt",cfg.rotEnt,"num")+field("Rótulos comprados","rc","rotulosComprados",cfg.rotulosComprados,"int")+field("Frete total da compra (R$)","fe","freteEnt",cfg.freteEnt,"num")+'</div>'+
     '<div class="calcs" style="margin-top:10px"><span class="calc'+(L.rotulosOk?"":" bad")+'">'+(L.rotulosOk?"Rótulos conferem com o total de produtos":"Atenção: o lote tem "+num(L.totalUnid)+" produtos e foram comprados "+num(cfg.rotulosComprados)+" rótulos")+'</span>'+
     '<span class="calc">Frete por unidade <b>'+brl(L.freteUnit)+'</b></span><span class="calc">Total investido no lote <b>'+brl(L.totalInvestido)+'</b></span></div></div>';
+  /* 2b */
+  var ex = M.prods.filter(function(p){ return p.extra; });
+  h += '<div class="card full"><h3>Produtos que você cadastrou</h3>'+(ex.length ? '<div class="plist">'+ex.map(prodRow).join("")+'</div>' : '<p class="hint" style="margin:0 0 10px">Vende algo que não está na planilha (pólen, cera, kit, outro mel)? Cadastre aqui e ele entra nas contas, no estoque e na meta.</p>')+
+    '<button class="btn sm" type="button" data-hub="novo" style="margin-top:10px">Cadastrar produto novo</button></div>';
   /* 3 */
   h += '<div class="card"><h3>3 · Contas fixas do mês</h3><div class="stack" style="gap:8px">';
   cfg.contas.forEach(function(c,i){
     h += '<div class="contarow">'+fin("cn"+i,"contas."+i+".nome",c.nome,"text",' aria-label="Nome da conta '+(i+1)+'"')+fin("cv"+i,"contas."+i+".valor",c.valor,"num",' aria-label="Valor de '+esc(c.nome)+'"')+'</div>';
   });
+  h += '<button class="btn sm sec" type="button" data-hub="conta">Adicionar conta fixa</button>';
   h += '</div><div class="wfr tot" style="margin-top:12px;grid-template-columns:1fr auto"><span>Total de contas fixas</span><span class="val">'+brl(mt.contas)+'</span></div>'+
     '<p class="hint">DAS do MEI 2026: R$ 82,05 (5% do salário mínimo de R$ 1.621 + R$ 1 de ICMS). Muda todo ano.</p></div>';
   /* 5 */
@@ -1676,6 +1742,10 @@ function onCfgInput(el){
     if(kind==="pct"){ if(v>=100){ toast("A perda precisa ser menor que 100%."); renderView(); return; } v=v/100; }
   }
   if(!adopt()){ renderView(); return; }
+  var mp = path.match(/^prod\.([^.]+)\.preco$/), mc = path.match(/^contas\.(\d+)\.valor$/), me = path.match(/^ent\.(\d+)\.custo$/);
+  if(mp && M.pm[mp[1]] && n(M.pm[mp[1]].preco)!==v) logHist("Preço de "+M.pm[mp[1]].nome+": "+brl(M.pm[mp[1]].preco)+" → "+brl(v));
+  if(mc && S.cfg.contas[+mc[1]] && n(S.cfg.contas[+mc[1]].valor)!==v) logHist("Conta fixa "+S.cfg.contas[+mc[1]].nome+": "+brl(S.cfg.contas[+mc[1]].valor)+" → "+brl(v));
+  if(me && S.cfg.ent[+me[1]] && n(S.cfg.ent[+me[1]].custo)!==v) logHist("Custo de compra de "+S.cfg.ent[+me[1]].nome+": "+brl(S.cfg.ent[+me[1]].custo)+" → "+brl(v));
   setPath(S.cfg, path, v);
   markCfg();
   setTimeout(function(){ compute(); renderBadges(); renderView(); }, 0);
@@ -1685,8 +1755,9 @@ function onCfgInput(el){
 /* ================= AJUDA ================= */
 var GUIDES = {
   painel:{t:"Como usar esta tela", s:["Escolha o mês lá em cima, no campo <b>Mês</b>.","O anel mostra quantas unidades você vendeu e quantas precisa vender (a <b>meta</b>) para pagar as contas fixas do mês.","Logo abaixo estão o lucro, o que ficou guardado e o que precisa de atenção. Toque em um aviso para resolver."]},
-  lancamentos:{t:"Como usar esta tela", s:["Para registrar uma venda ou um gasto novo, toque no botão dourado <b>Lançar</b>, no canto de baixo da tela.","Errou alguma coisa? Toque no lançamento da lista para corrigir ou excluir.","Os campos de cima filtram a lista: outro mês, só um tipo, ou uma busca por palavra."]},
-  estoque:{t:"Como usar esta tela", s:["Esta tela se calcula sozinha a partir das vendas e brindes que você lança.","Quando um produto mostrar <b>Repor</b> ou <b>Esgotado</b>, é hora de comprar mais.","Comprou mais de um produto? Lance a compra e some as unidades novas no campo <b>Reposição</b> do cartão dele."]},
+  lancar:{t:"Como usar esta tela", s:["Toque no que aconteceu e responda as perguntas. Leva menos de um minuto.","Começou a vender algo novo? Use <b>Cadastrar produto novo</b>: ele entra no estoque, nas contas e ganha preço sugerido.","Comprou mais mercadoria? Use <b>Comprei mais mercadoria</b>: o estoque soma sozinho e o custo se atualiza."]},
+  lancamentos:{t:"Como usar esta tela", s:["Para registrar algo novo, use a aba <b>Lançar</b> ou o botão dourado <b>+</b>.","Errou alguma coisa? Toque no lançamento da lista para corrigir ou excluir.","Os campos de cima filtram a lista: outro mês, só um tipo, ou uma busca por palavra."]},
+  estoque:{t:"Como usar esta tela", s:["Esta tela se calcula sozinha a partir das vendas e brindes que você lança.","Quando um produto mostrar <b>Repor</b> ou <b>Esgotado</b>, é hora de comprar mais.","Comprou mais? Toque em <b>Comprei mais deste produto</b> no cartão dele. O estoque soma sozinho."]},
   resumo:{t:"Como ler esta tela", s:["Cada mês do ano aparece separado, e o mês escolhido fica destacado.","<b>Lucro</b> é o que o negócio ganhou. <b>Caixa</b> é o dinheiro que entrou e saiu da conta.","Em mês de compra grande o caixa fica negativo e o lucro não. O dinheiro virou mercadoria no estoque."]},
   custos:{t:"Como usar esta tela", s:["Preencha esta tela antes de tudo, e de novo sempre que comprar um lote novo ou mudar um preço.","Só mexa nos <b>campos dourados</b>. Todo o resto o app calcula.","Para trocar um número: toque no campo, apague, digite o novo e toque fora dele. Use vírgula para os centavos, ex.: 16,37."]}
 };
@@ -1707,13 +1778,16 @@ var GLOSS = [
   ["Caixa","O dinheiro que de fato entrou e saiu da conta no mês, incluindo compras de estoque. Pode ficar negativo em mês de compra grande, mesmo com lucro."],
   ["Brinde/uso próprio","Produto que saiu sem venda: presente, amostra, consumo da família. Sai do estoque pelo preço de custo."],
   ["Preço sugerido","Custo do produto + 75% a 80% de lucro sobre o custo, num preço redondo (,00, ,50 ou ,90). Um preço que o cliente paga e que deixa boa sobra. Se a sua região paga mais, mantenha o seu."],
-  ["Reposição","Unidades que você comprou depois do primeiro lote. Some aqui para o estoque ficar certo."]
+  ["Reposição","Compra de mais unidades de um produto que você já vende. Lance em <b>Lançar → Comprei mais mercadoria</b> e o estoque soma sozinho."]
 ];
 var FAQ = [
   ["Por onde eu começo?","Vá em <b>Custos e preços</b> e confira os campos dourados com os números do seu lote. Depois, toda vez que vender ou gastar, toque em <b>Lançar</b>."],
   ["Errei um lançamento. E agora?","Abra <b>Vendas e gastos</b>, toque no lançamento errado, corrija e toque em <b>Salvar</b>. Para apagar, toque em <b>Excluir</b> duas vezes."],
   ["Dei desconto. Como lanço a venda?","Lance normalmente e, na pergunta do valor, troque pelo que você realmente recebeu. Se ficar abaixo do custo, o app avisa."],
-  ["Comprei mais mercadoria. O que faço?","Toque em <b>Lançar</b>, escolha <b>Paguei ou comprei</b> e depois <b>Compra de produtos</b> (ou <b>Compra de mel em balde</b>). Depois, na tela <b>Estoque</b>, some as unidades novas no campo <b>Reposição</b>. Se o preço de compra mudou, atualize <b>Custos e preços</b>."],
+  ["Comprei mais mercadoria. O que faço?","Abra a aba <b>Lançar</b> e toque em <b>Comprei mais mercadoria</b>. Escolha o produto, diga quantas unidades chegaram e quanto pagou. O estoque soma sozinho e, se o preço de compra mudou, o app atualiza o custo e o preço sugerido."],
+  ["Comecei a vender um produto novo. Como coloco no app?","Na aba <b>Lançar</b>, toque em <b>Cadastrar produto novo</b>. Diga o nome, quanto paga por unidade e quantas tem. O app calcula o custo, sugere o preço e o produto aparece nas vendas e no estoque."],
+  ["Um pote quebrou ou venceu. Como lanço?","Na aba <b>Lançar</b>, toque em <b>Perdi, quebrou ou venceu</b>. O produto sai do estoque e o prejuízo entra no resumo pelo preço de custo."],
+  ["O fornecedor aumentou o preço. O que faço?","Na aba <b>Lançar</b>, toque em <b>Mudar preço ou custo</b>, escolha o produto e digite o novo custo. O app mostra o novo preço sugerido e você decide se reajusta."],
   ["Onde lanço a taxa da maquininha?","<b>Lançar</b> → <b>Paguei ou comprei</b> → <b>Taxa maquininha</b>. Pode lançar uma vez no fim do mês com o total das taxas."],
   ["Tirei dinheiro para mim. Onde lanço?","<b>Lançar</b> → <b>Paguei ou comprei</b> → <b>Salário</b>. A regra de ouro é um salário fixo, pensado pelo mês fraco."],
   ["O caixa ficou negativo. Estou no prejuízo?","Não necessariamente. Em mês de compra de lote o dinheiro sai da conta, mas vira mercadoria. Olhe o <b>Lucro do mês</b> e, na tela Estoque, quanto do lote já voltou."],
@@ -1771,19 +1845,400 @@ function renderTour(){
 }
 function endTour(){ lsSet("cfm_tour",1); closeForm(); }
 
+
+/* ================= ABA LANÇAR (central de lançamentos e cadastros) ================= */
+function logHist(t){ S.cfg.hist = [{d:todayISO(), t:t}].concat(Array.isArray(S.cfg.hist)?S.cfg.hist:[]).slice(0,80); }
+var HIC = {
+  venda:'<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
+  gasto:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/>',
+  salario:'<path d="M20 7H5a2 2 0 0 1 0-4h13v4M3 5v14a2 2 0 0 0 2 2h15V7"/><circle cx="16" cy="14" r="1.5"/>',
+  entrada:'<circle cx="12" cy="12" r="9"/><path d="M12 7v10M8 13l4 4 4-4"/>',
+  brinde:'<rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1.5S9 8 12 8zM12 8c2-4 6-4 6-1.5S15 8 12 8z"/>',
+  perda:'<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/>',
+  repo:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 9v6M9 12h6"/>',
+  novo:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/>',
+  preco:'<path d="M12 2v20M17 6.5c-.8-1.5-2.6-2.5-5-2.5-2.8 0-5 1.4-5 3.5S9.2 10.6 12 11s5 1.4 5 3.5-2.2 3.5-5 3.5c-2.4 0-4.2-1-5-2.5"/>',
+  balde:'<path d="M5 7h14l-1.5 13a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1zM5 7a7 3 0 0 1 14 0M9 11c0 2 1.5 3 3 3"/>',
+  conta:'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14h3"/>'
+};
+var HUB = [
+  ["No dia a dia", [
+    ["venda","Vendi","Uma venda de qualquer produto"],
+    ["gasto","Paguei uma conta ou despesa","DAS, combustível, maquininha, embalagem…"],
+    ["brinde","Dei de brinde ou usei","Produto que saiu sem venda"],
+    ["perda","Perdi, quebrou ou venceu","Tira do estoque a preço de custo"],
+    ["salario","Tirei meu salário","Da conta do negócio para a sua"],
+    ["entrada","Entrou outro dinheiro","Dinheiro que não é venda"]
+  ]],
+  ["Produtos e estoque", [
+    ["repo","Comprei mais mercadoria","O estoque soma sozinho"],
+    ["novo","Cadastrar produto novo","Algo que você começou a vender"],
+    ["preco","Mudar preço ou custo","Fornecedor aumentou? Quer reajustar?"],
+    ["balde","Comprei mel em balde","Lote novo para envasar"]
+  ]],
+  ["Contas do mês", [
+    ["conta","Nova conta fixa","Aluguel, internet, outra conta que chega todo mês"]
+  ]]
+];
+function hubIcon(k){ return '<span class="hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(HIC[k]||"")+'</svg></span>'; }
+function estOf(key){ return M.est.rows.filter(function(r){ return r.p.key===key; })[0] || {atual:0, reposTot:0}; }
+function prodRow(p){
+  var e = estOf(p.key);
+  return '<button class="prow" type="button" data-prod="'+p.key+'"><span class="pl"><b>'+esc(p.nome)+'</b><small>'+esc(LIN_NOME[p.linha]||p.linha)+' · custo '+brl(p.custo)+' · estoque '+num(e.atual)+'</small></span>'+
+    '<span class="pr"><b>'+brl(p.preco)+'</b>'+(p.custo>0 ? (p.abaixoSug?'<small class="neg">abaixo do sugerido</small>':'<small class="pos">preço ok</small>') : '<small>sem custo</small>')+'</span></button>';
+}
+function vLancar(){
+  var h = '<div class="vhead"><div><div class="eyebrow">Lançamentos</div><h2 class="vt">O que você quer registrar?</h2><p class="vsub">Escolha uma opção. Cada uma faz poucas perguntas, e o app faz as contas e atualiza estoque, lucro e meta.</p></div></div>';
+  HUB.forEach(function(g){
+    h += '<div class="hubg"><div class="eyebrow">'+esc(g[0])+'</div><div class="hubgrid">'+g[1].map(function(it){
+      return '<button class="hubc" type="button" data-hub="'+it[0]+'">'+hubIcon(it[0])+'<span><b>'+esc(it[1])+'</b><small>'+esc(it[2])+'</small></span></button>';
+    }).join("")+'</div></div>';
+  });
+  var ativos = M.prods.filter(function(p){ return !p.arq; }), arq = M.prods.filter(function(p){ return p.arq; });
+  h += '<div class="secs" style="margin-top:6px">';
+  h += '<div class="card full"><div class="ch"><h3>Meus produtos ('+ativos.length+')</h3><button class="btn sm" type="button" data-hub="novo">Cadastrar produto novo</button></div>'+
+    '<p class="hint" style="margin:-4px 0 10px">Toque em um produto para mudar preço, custo, estoque mínimo ou vendas do mês.</p><div class="plist">'+ativos.map(prodRow).join("")+'</div>'+
+    (arq.length?'<details class="arqd"><summary>Produtos arquivados ('+arq.length+')</summary><div class="plist">'+arq.map(prodRow).join("")+'</div></details>':'')+'</div>';
+  var cs = S.cfg.contas||[];
+  h += '<div class="card"><div class="ch"><h3>Contas fixas do mês</h3><button class="btn sm sec" type="button" data-hub="conta">Adicionar</button></div><div class="plist">'+
+    (cs.length ? cs.map(function(k,i){ return '<button class="prow" type="button" data-conta="'+i+'"><span class="pl"><b>'+esc(k.nome)+'</b></span><span class="pr"><b>'+brl(k.valor)+'</b></span></button>'; }).join("") : '<p class="hint">Nenhuma conta fixa cadastrada.</p>')+
+    '</div><div class="kv" style="margin-top:6px"><div class="strong"><span>Total por mês</span><span>'+brl(M.meta.contas)+'</span></div><div><span>Meta: unidades para pagar</span><span>'+(M.meta.meta===null?"—":M.meta.meta)+'</span></div></div></div>';
+  var recent = M.lancE.slice().sort(function(a,b){ return (b.data||"").localeCompare(a.data||""); }).slice(0,6);
+  h += '<div class="card"><div class="ch"><h3>Últimos lançamentos</h3><button class="btn sm sec" type="button" data-v="lancamentos">Ver todos</button></div>'+
+    (recent.length ? '<div class="plist">'+recent.map(function(l){
+      var t = C.needsProd(l.cat) ? ((l.qtd?num(l.qtd)+"× ":"")+(l.pnome||"produto")) : (l.desc||l.cat);
+      var val = C.isRet(l.cat) ? brl(l.custo) : (l.gaveta==="Entrada"?"+ ":"− ")+brl(l.valor);
+      return '<button class="prow" type="button" data-open-l="'+esc(l.id)+'"><span class="pl"><b>'+esc(t)+'</b><small>'+esc(dataBR(l.data)+" · "+l.cat)+'</small></span><span class="pr"><b class="'+(l.gaveta==="Entrada"?"pos":"")+'">'+val+'</b></span></button>';
+    }).join("")+'</div>' : '<p class="hint">Nada lançado ainda.</p>')+'</div>';
+  var hist = Array.isArray(S.cfg.hist) ? S.cfg.hist : [];
+  h += '<div class="card full"><h3>Histórico de alterações</h3>'+(hist.length ? '<ul class="hist">'+hist.slice(0,15).map(function(x){ return '<li><span class="num">'+esc(dataBR(x.d).slice(0,5))+'</span><span>'+esc(x.t)+'</span></li>'; }).join("")+'</ul>'+(hist.length>15?'<p class="hint">E mais '+(hist.length-15)+' alterações antigas.</p>':'')
+    : '<p class="hint" style="margin:0">Quando você mudar um preço, um custo, cadastrar um produto ou mexer numa conta fixa, fica anotado aqui com a data.</p>')+'</div>';
+  h += '</div>';
+  return h;
+}
+function hub(k, key){
+  if(k==="venda") return openForm(null,{tipo:"venda", prod:key||""});
+  if(k==="gasto") return openForm(null,{tipo:"gasto"});
+  if(k==="brinde") return openForm(null,{tipo:"brinde", cat:"Brinde/uso próprio"});
+  if(k==="perda") return openForm(null,{tipo:"brinde", cat:"Perda/quebra"});
+  if(k==="salario") return openForm(null,{tipo:"gasto", cat:"Salário"});
+  if(k==="entrada") return openForm(null,{tipo:"entrada"});
+  if(k==="balde") return openForm(null,{tipo:"gasto", cat:"Compra de mel em balde"});
+  if(k==="repo") return sheetRepo(key);
+  if(k==="novo") return sheetNovo();
+  if(k==="preco") return sheetProduto(null);
+  if(k==="conta") return sheetConta(null);
+}
+
+/* ---- ficha genérica ---- */
+function openGen(def){
+  if(S.example && S.hasOwn){ toast("Você está vendo o exemplo. Volte aos seus dados para lançar."); return; }
+  F = {gen:true, def:def, vals:def.vals||{}, err:"", del:false, opener:document.activeElement};
+  renderGen();
+  var sc=$("scrim"), sh=$("sheet"); sc.hidden=false; sh.hidden=false;
+  requestAnimationFrame(function(){ sc.classList.add("on"); sh.classList.add("on"); });
+  setTimeout(function(){ var el=$("sheet").querySelector("select,input"); if(el) el.focus(); }, 80);
+}
+function gVis(f){ return !f.show || f.show(F.vals); }
+function renderGen(){
+  var d=F.def, v=F.vals, k=0;
+  function st(t){ k++; return '<span class="fl"><span class="stepn">'+k+'</span>'+esc(t)+'</span>'; }
+  var h = '<div class="shh"><h3 id="shTitle">'+esc(d.title)+'</h3><button class="iconbtn" type="button" data-close="1" aria-label="Fechar">✕</button></div><div class="shb">';
+  if(d.intro) h += '<p class="hint" style="margin:-8px 0 0">'+d.intro+'</p>';
+  d.fields.forEach(function(f){
+    if(!gVis(f)) return;
+    var id="g_"+f.id, hint = typeof f.hint==="function" ? f.hint(v) : f.hint, lab = typeof f.label==="function" ? f.label(v) : f.label;
+    var hh = hint ? '<span class="fh">'+hint+'</span>' : '';
+    if(f.type==="info"){ var ih=f.html(v); if(ih) h += ih; return; }
+    if(f.type==="check"){ h += '<label class="chk" for="'+id+'"><input type="checkbox" id="'+id+'"'+(v[f.id]?" checked":"")+'><span>'+esc(lab)+'</span></label>'+hh; return; }
+    h += '<label class="f fq" for="'+id+'">'+st(lab);
+    if(f.type==="select"){
+      var o = typeof f.opts==="function" ? f.opts(v) : f.opts.map(function(x){ return '<option value="'+esc(x[0])+'"'+(String(v[f.id])===String(x[0])?" selected":"")+'>'+esc(x[1])+'</option>'; }).join("");
+      h += '<select class="sel" id="'+id+'">'+o+'</select>';
+    }else if(f.type==="date"){
+      h += '<input class="inp" type="date" id="'+id+'" value="'+esc(v[f.id]||"")+'">';
+    }else if(f.type==="text"){
+      h += '<input class="inp" id="'+id+'" value="'+esc(v[f.id]||"")+'" maxlength="'+(f.max||80)+'" placeholder="'+esc(f.ph||"")+'" autocomplete="off">';
+    }else{
+      var raw = v[f.id+"Raw"]!==undefined ? v[f.id+"Raw"] : fmtIn(v[f.id]);
+      h += '<input class="inp num" id="'+id+'" inputmode="'+(f.type==="int"?"numeric":"decimal")+'" value="'+esc(raw)+'" placeholder="'+esc(typeof f.ph==="function"?f.ph(v):(f.ph||""))+'" autocomplete="off">';
+    }
+    h += hh+'</label>';
+  });
+  h += '<div id="gPrev">'+(d.preview?d.preview(v):"")+'</div>';
+  h += F.err ? '<div class="err" role="alert">'+esc(F.err)+'</div>' : '';
+  var dl = d.delLabel ? d.delLabel(v) : "";
+  h += '</div><div class="shf">'+(dl?'<button class="btn danger sm" type="button" data-del="1">'+esc(F.del?"Tem certeza? Toque de novo":dl)+'</button>':'<span></span>')+
+    '<div class="r"><button class="btn sec" type="button" data-close="1">Cancelar</button><button class="btn" type="button" data-save="1">'+esc(d.saveLabel||"Salvar")+'</button></div></div>';
+  $("sheet").innerHTML = h;
+}
+function readGen(){
+  var v=F.vals;
+  F.def.fields.forEach(function(f){
+    var el=$("g_"+f.id); if(!el) return;
+    if(f.type==="check") v[f.id]=el.checked;
+    else if(f.type==="num"||f.type==="int"){ var raw=el.value, x=parseNum(raw); v[f.id+"Raw"]=raw; v[f.id]= x===null ? null : (isNaN(x)?NaN:(f.type==="int"?Math.round(x):x)); }
+    else v[f.id]=el.value;
+  });
+}
+function genChange(e){
+  readGen();
+  var id=(e.target.id||"").replace(/^g_/,""), f=F.def.fields.filter(function(x){ return x.id===id; })[0];
+  if(f && (f.type==="select"||f.type==="check")){ if(f.onChange) f.onChange(F.vals); F.err=""; renderGen(); var el=$("g_"+id); if(el) el.focus(); return; }
+}
+function genInput(){ readGen(); var pv=$("gPrev"); if(pv && F.def.preview) pv.innerHTML=F.def.preview(F.vals); }
+function genSave(){
+  readGen();
+  var bad = F.def.fields.filter(function(f){ return gVis(f) && (f.type==="num"||f.type==="int") && typeof F.vals[f.id]==="number" && isNaN(F.vals[f.id]); })[0];
+  if(bad){ F.err = "\""+(typeof bad.label==="function"?bad.label(F.vals):bad.label)+"\" precisa ser um número. Use vírgula para os centavos, ex.: 12,50."; renderGen(); return; }
+  var neg = F.def.fields.filter(function(f){ return gVis(f) && (f.type==="num"||f.type==="int") && F.vals[f.id]<0; })[0];
+  if(neg){ F.err = "Não use valores negativos."; renderGen(); return; }
+  var err = F.def.save(F.vals);
+  if(err){ F.err=err; renderGen(); var ea=$("sheet").querySelector(".err"); if(ea && ea.scrollIntoView) ea.scrollIntoView({block:"nearest"}); }
+}
+function genDel(){
+  if(!F.del){ readGen(); F.del=true; renderGen(); return; }
+  F.def.onDel(F.vals);
+}
+function finishCfg(msg, months){
+  if(months && months.length) markMonths(months); else markCfg();
+  closeForm(); renderAll(); if(msg) toast(msg);
+}
+function defDateNow(){ return (S.mes===todayISO().slice(0,7)) ? todayISO() : (S.mes+"-01"); }
+
+/* custo de compra editável de cada produto */
+function buyRef(p){
+  if(!p) return null;
+  if(p.extra){ var x=(S.cfg.extra||[]).filter(function(z){ return z.id===p.xid; })[0]; return x ? {get:function(){ return n(x.custo); }, set:function(v){ x.custo=v; }} : null; }
+  var m=/^e(\d+)$/.exec(p.key); if(m){ var e=S.cfg.ent[+m[1]]; return {get:function(){ return n(e.custo); }, set:function(v){ e.custo=v; }}; }
+  return null;
+}
+function sugBoxMini(custo, preco){
+  if(!(custo>0)) return "";
+  var sg=C.sugerido(custo), h='<div class="sugbox"><div class="sbt"><span>Custo por unidade</span><b>'+brl(custo)+'</b></div><div class="sbt" style="margin-top:4px"><span>Preço sugerido</span><b class="goldtxt">'+brl(sg)+'</b></div><div class="sbs">Lucro de '+Math.round((sg/custo-1)*100)+'% sobre o custo</div>';
+  if(preco>0){
+    var sb=preco-custo;
+    h += preco<custo-0.005 ? '<div class="sbs neg"><b>Preço abaixo do custo:</b> cada venda dá prejuízo de '+brl(-sb)+'.</div>'
+      : '<div class="sbs">Com '+brl(preco)+' a sobra é '+brl(sb)+' por unidade ('+pct(sb/preco)+' do preço).'+(preco<sg-0.005?' <span class="neg">Abaixo do sugerido.</span>':' <span class="pos">Preço ok.</span>')+'</div>';
+  }
+  return h+'</div>';
+}
+
+/* ---- comprei mais mercadoria ---- */
+function sheetRepo(key){
+  openGen({
+    title:"Comprei mais mercadoria",
+    intro:"O estoque do produto soma sozinho e a compra entra no caixa do mês.",
+    vals:{prod:key||"", data:defDateNow(), qtd:null, valor:null, frete:null, pag:"Pix", upd:true, desc:""},
+    fields:[
+      {id:"prod", type:"select", label:"Qual produto chegou?", opts:function(v){ return prodOptions(v.prod); },
+        hint:function(v){ var p=M.pm[v.prod]; if(!p) return "Não achou? Cadastre antes em <b>Cadastrar produto novo</b>."; var r=buyRef(p); return 'Em estoque agora: <b>'+num(estOf(p.key).atual)+'</b>'+(r?' · custo de compra atual: <b>'+brl(r.get())+'</b>':''); }},
+      {id:"data", type:"date", label:"Quando chegou?"},
+      {id:"qtd", type:"int", label:"Quantas unidades?", ph:"Ex.: 24"},
+      {id:"valor", type:"num", label:"Quanto pagou pelos produtos? (R$, sem o frete)", ph:"0,00",
+        hint:function(v){ var p=M.pm[v.prod]; return p && p.linha==="Mel fracionado" ? "Mel que você envasou: se o balde já foi lançado, deixe em branco." : "O valor total desta compra."; }},
+      {id:"frete", type:"num", label:"Pagou frete? (R$, opcional)", ph:"0,00", hint:"Se preencher, o frete vira um lançamento separado."},
+      {id:"pag", type:"select", label:"Como pagou?", opts:[["","—"]].concat(C.PAGS.map(function(x){ return [x,x]; }))},
+      {id:"upd", type:"check", label:"Atualizar o custo de compra deste produto com o preço desta compra", show:function(v){ return !!buyRef(M.pm[v.prod]); }},
+      {id:"desc", type:"text", label:"Quer anotar algo? (opcional)", ph:"Ex.: fornecedor, nota fiscal", max:140}
+    ],
+    preview:function(v){
+      var p=M.pm[v.prod]; if(!p) return "";
+      var e=estOf(p.key), q=n(v.qtd), h="";
+      if(q>0) h += '<div class="preview good">Estoque de '+esc(p.nome)+': '+num(e.atual)+' → <b>'+num(e.atual+q)+'</b> unidades.</div>';
+      var r=buyRef(p);
+      if(q>0 && n(v.valor)>0){
+        var unit=n(v.valor)/q;
+        h += '<div class="preview">Nesta compra cada unidade saiu por <b>'+brl(unit)+'</b>.';
+        if(r && v.upd && Math.abs(unit-r.get())>0.004){ var nc=p.custo-r.get()+unit; h += ' O custo total por unidade passa de '+brl(p.custo)+' para <b>'+brl(nc)+'</b> e o preço sugerido vai para <b>'+brl(C.sugerido(nc))+'</b>.'; }
+        h += '</div>';
+      }
+      return h;
+    },
+    save:function(v){
+      var p=M.pm[v.prod];
+      if(!p) return "Escolha o produto.";
+      if(!v.data) return "Escolha a data.";
+      if(!(n(v.qtd)>0)) return "Informe quantas unidades chegaram.";
+      if(!adopt()) return;
+      var q=n(v.qtd), val=n(v.valor)>0?Math.round(n(v.valor)*100)/100:null, months=[v.data.slice(0,7)];
+      S.lanc.push({id:uid(), data:v.data, cat:"Reposição de produto", prod:p.key, desc:(v.desc||"").trim().slice(0,140)||("Reposição de "+p.nome), qtd:q, valor:val, pag:v.pag||""});
+      if(n(v.frete)>0) S.lanc.push({id:uid(), data:v.data, cat:"Frete das compras", prod:"", desc:"Frete da reposição de "+p.nome, qtd:null, valor:Math.round(n(v.frete)*100)/100, pag:v.pag||""});
+      var r=buyRef(p);
+      if(r && v.upd && val){ var unit=Math.round(val/q*100)/100; if(Math.abs(unit-r.get())>0.004){ logHist("Custo de compra de "+p.nome+": "+brl(r.get())+" → "+brl(unit)+" (nova compra)"); r.set(unit); } }
+      if(v.data.slice(0,7)!==S.mes){ S.mes=v.data.slice(0,7); S.ano=S.mes.slice(0,4); }
+      finishCfg("Compra lançada. "+p.nome+": +"+num(q)+" no estoque", months);
+    }
+  });
+}
+
+/* ---- cadastrar produto novo ---- */
+function sheetNovo(){
+  openGen({
+    title:"Cadastrar produto novo",
+    intro:"Preencha o que souber. O app calcula o custo, sugere o preço e o produto passa a aparecer nas vendas, no estoque e na meta.",
+    saveLabel:"Cadastrar",
+    vals:{nome:"", linha:"Outros produtos", custo:null, emb:null, rot:null, frete:null, inicial:null, min:5, preco:null, vendas:null, pago:null},
+    fields:[
+      {id:"nome", type:"text", label:"Nome do produto", ph:"Ex.: Pólen 100 g", max:60},
+      {id:"linha", type:"select", label:"Que tipo de produto é?", opts:[["Outros produtos","Outro produto (pólen, cera, kit…)"],["Entreposto","Produto do entreposto"],["Mel fracionado","Mel que você envasa"]]},
+      {id:"custo", type:"num", label:"Quanto você paga por unidade? (R$)", ph:"0,00", hint:"Preço de compra de cada unidade, sem embalagem e sem frete."},
+      {id:"emb", type:"num", label:"Embalagem por unidade (R$, se tiver)", ph:"0,00"},
+      {id:"rot", type:"num", label:"Rótulo por unidade (R$, se tiver)", ph:"0,00"},
+      {id:"frete", type:"num", label:"Frete por unidade (R$, se tiver)", ph:"0,00", hint:"Divida o frete da compra pelo número de unidades."},
+      {id:"inicial", type:"int", label:"Quantas unidades você tem agora?", ph:"Ex.: 30"},
+      {id:"min", type:"int", label:"Estoque mínimo", hint:"Quando o estoque chegar aqui, o app avisa para repor."},
+      {id:"preco", type:"num", label:"Por quanto vai vender? (R$)", ph:function(v){ var c=n(v.custo)+n(v.emb)+n(v.rot)+n(v.frete); return c>0?fmtIn(C.sugerido(c)):"0,00"; }, hint:"Deixe em branco para usar o preço sugerido."},
+      {id:"vendas", type:"int", label:"Quantas vende num mês normal? (opcional)", hint:"Entra no cálculo da meta do mês."},
+      {id:"pago", type:"num", label:"Quanto pagou por essas unidades? (R$, opcional)", ph:"0,00", hint:"Se preencher, vira um gasto lançado hoje, em Compra de produtos."}
+    ],
+    preview:function(v){
+      var c=n(v.custo)+n(v.emb)+n(v.rot)+n(v.frete);
+      if(!(c>0)) return '<div class="preview">Preencha quanto você paga por unidade para ver o custo e o preço sugerido.</div>';
+      return sugBoxMini(c, n(v.preco)>0 ? n(v.preco) : C.sugerido(c));
+    },
+    save:function(v){
+      var nome=(v.nome||"").trim();
+      if(!nome) return "Escreva o nome do produto.";
+      if(M.prods.some(function(p){ return norm(p.nome)===norm(nome); })) return "Já existe um produto com esse nome. Use outro nome ou edite o existente.";
+      if(!(n(v.custo)>0)) return "Informe quanto você paga por unidade.";
+      if(!adopt()) return;
+      var c=n(v.custo)+n(v.emb)+n(v.rot)+n(v.frete), preco = n(v.preco)>0 ? Math.round(n(v.preco)*100)/100 : C.sugerido(c);
+      var id = uid().slice(1);
+      S.cfg.extra = (S.cfg.extra||[]).concat([{id:id, nome:nome, linha:v.linha, custo:n(v.custo), emb:n(v.emb), rot:n(v.rot), frete:n(v.frete), inicial:n(v.inicial), arq:false}]);
+      S.cfg.prod["n"+id] = {preco:preco, vendas:n(v.vendas), min:n(v.min), repos:0};
+      logHist("Produto novo: "+nome+" · custo "+brl(c)+" · preço "+brl(preco));
+      var months=[];
+      if(n(v.pago)>0){ var d=todayISO(); S.lanc.push({id:uid(), data:d, cat:"Compra de produtos", prod:"", desc:"Estoque inicial de "+nome, qtd:n(v.inicial)||null, valor:Math.round(n(v.pago)*100)/100, pag:"Pix"}); months.push(d.slice(0,7)); }
+      finishCfg(nome+" cadastrado", months);
+    }
+  });
+}
+
+/* ---- produto: mudar preço, custo e dados ---- */
+function prodVals(key){
+  var p=M.pm[key]; if(!p) return {prod:""};
+  var r=buyRef(p), x=p.extra ? (S.cfg.extra||[]).filter(function(z){ return z.id===p.xid; })[0] : null;
+  return {prod:key, preco:p.preco, vendas:p.vendasN, min:p.min, custo:r?r.get():null, nome:x?x.nome:p.nome, linha:x?x.linha:p.linha, emb:x?x.emb:null, rot:x?x.rot:null, frete:x?x.frete:null, inicial:x?x.inicial:null};
+}
+function sheetProduto(key){
+  var pick = !key;
+  function P(v){ return M.pm[v.prod]; }
+  function isX(v){ var p=P(v); return !!(p && p.extra); }
+  function newCost(v){
+    var p=P(v); if(!p) return 0;
+    if(p.extra) return n(v.custo)+n(v.emb)+n(v.rot)+n(v.frete);
+    var r=buyRef(p); return r ? p.custo-r.get()+n(v.custo) : p.custo;
+  }
+  function used(p){ return S.lanc.some(function(l){ return l.prod===p.key; }); }
+  openGen({
+    title: pick ? "Mudar preço ou custo" : "Editar produto",
+    intro: pick ? "Escolha o produto. O preço sugerido acompanha o custo na hora." : "",
+    vals: pick ? {prod:""} : prodVals(key),
+    fields:[
+      {id:"prod", type:"select", label:"Qual produto?", show:function(){ return pick; }, opts:function(v){ return prodOptions(v.prod); },
+        onChange:function(v){ var nv=prodVals(v.prod); for(var k in v) delete v[k]; for(var j in nv) v[j]=nv[j]; }},
+      {id:"nome", type:"text", label:"Nome do produto", show:isX, max:60},
+      {id:"linha", type:"select", label:"Tipo de produto", show:isX, opts:[["Outros produtos","Outro produto"],["Entreposto","Produto do entreposto"],["Mel fracionado","Mel que você envasa"]]},
+      {id:"fracinfo", type:"info", html:function(v){ var p=P(v); return p && !buyRef(p) ? '<div class="preview">O custo do mel envasado vem do preço do balde, da embalagem e do rótulo. Para mudar, vá em <b>Custos e preços → seção 1</b>.</div>' : ""; }},
+      {id:"custo", type:"num", label:"Quanto você paga por unidade? (R$)", show:function(v){ return !!buyRef(P(v)); }, hint:"Preço de compra de cada unidade, sem embalagem e sem frete."},
+      {id:"emb", type:"num", label:"Embalagem por unidade (R$)", show:isX},
+      {id:"rot", type:"num", label:"Rótulo por unidade (R$)", show:isX},
+      {id:"frete", type:"num", label:"Frete por unidade (R$)", show:isX},
+      {id:"preco", type:"num", label:"Preço de venda (R$)", show:function(v){ return !!P(v); }},
+      {id:"vendas", type:"int", label:"Quantas vende num mês normal?", show:function(v){ return !!P(v); }, hint:"Entra no cálculo da meta do mês."},
+      {id:"min", type:"int", label:"Estoque mínimo", show:function(v){ return !!P(v); }},
+      {id:"inicial", type:"int", label:"Estoque inicial (quando cadastrou)", show:isX, hint:"Compras novas entram por <b>Comprei mais mercadoria</b>, não aqui."}
+    ],
+    preview:function(v){ var p=P(v); if(!p) return ""; return sugBoxMini(newCost(v), n(v.preco)) + (n(v.preco)>0 && n(v.preco)<C.sugerido(newCost(v))-0.005 ? '<button class="btn sm" type="button" data-usesug="1" style="width:100%">Usar o preço sugerido ('+brl(C.sugerido(newCost(v)))+')</button>' : ""); },
+    delLabel:function(v){ var p=P(v); if(!p || !p.extra) return ""; return p.arq ? "Reativar produto" : (used(p) ? "Arquivar produto" : "Excluir produto"); },
+    onDel:function(v){
+      var p=P(v); if(!p || !adopt()) return;
+      var x=(S.cfg.extra||[]).filter(function(z){ return z.id===p.xid; })[0]; if(!x) return;
+      if(p.arq){ x.arq=false; logHist("Produto reativado: "+p.nome); return finishCfg(p.nome+" reativado"); }
+      if(used(p)){ x.arq=true; logHist("Produto arquivado: "+p.nome); return finishCfg(p.nome+" arquivado. Os lançamentos dele continuam nas contas."); }
+      S.cfg.extra = S.cfg.extra.filter(function(z){ return z.id!==p.xid; }); delete S.cfg.prod[p.key];
+      logHist("Produto excluído: "+p.nome); finishCfg(p.nome+" excluído");
+    },
+    save:function(v){
+      var p=P(v);
+      if(!p) return "Escolha o produto.";
+      if(!(n(v.preco)>0)) return "Informe o preço de venda.";
+      if(isX(v)){
+        var nome=(v.nome||"").trim(); if(!nome) return "Escreva o nome do produto.";
+        if(M.prods.some(function(q){ return q.key!==p.key && norm(q.nome)===norm(nome); })) return "Já existe outro produto com esse nome.";
+      }
+      var r=buyRef(p);
+      if(r && !(n(v.custo)>0)) return "Informe quanto você paga por unidade.";
+      if(!adopt()) return;
+      var pr=S.cfg.prod[p.key] || (S.cfg.prod[p.key]={preco:0,vendas:0,min:0,repos:0});
+      var np=Math.round(n(v.preco)*100)/100;
+      if(Math.abs(np-n(pr.preco))>0.004) logHist("Preço de "+p.nome+": "+brl(pr.preco)+" → "+brl(np));
+      if(r && Math.abs(n(v.custo)-r.get())>0.004){ logHist("Custo de compra de "+p.nome+": "+brl(r.get())+" → "+brl(v.custo)); r.set(n(v.custo)); }
+      pr.preco=np; pr.vendas=n(v.vendas); pr.min=n(v.min);
+      if(p.extra){
+        var x=(S.cfg.extra||[]).filter(function(z){ return z.id===p.xid; })[0];
+        if(x){ if(x.nome!==v.nome.trim()) logHist("Produto renomeado: "+x.nome+" → "+v.nome.trim()); x.nome=v.nome.trim(); x.linha=v.linha; x.emb=n(v.emb); x.rot=n(v.rot); x.frete=n(v.frete); x.inicial=n(v.inicial); }
+      }
+      finishCfg(p.nome+" atualizado");
+    }
+  });
+}
+
+/* ---- contas fixas ---- */
+function sheetConta(i){
+  var isNew = i===null || i===undefined || !S.cfg.contas[i];
+  var k = isNew ? {nome:"", valor:null} : S.cfg.contas[i];
+  openGen({
+    title: isNew ? "Nova conta fixa" : "Conta fixa",
+    intro: "Contas que chegam todo mês entram na meta: o app calcula quantas unidades você precisa vender para pagá-las.",
+    vals:{nome:k.nome, valor:k.valor},
+    fields:[
+      {id:"nome", type:"text", label:"Nome da conta", ph:"Ex.: Aluguel do ponto", max:60},
+      {id:"valor", type:"num", label:"Quanto custa por mês? (R$)", ph:"0,00", hint:"Quando pagar, lance em <b>Paguei uma conta ou despesa</b>."}
+    ],
+    preview:function(v){
+      var tot = M.meta.contas - (isNew?0:n(k.valor)) + n(v.valor), sm=M.meta.sobraMedia;
+      return '<div class="preview">Contas fixas por mês: <b>'+brl(tot)+'</b>'+(sm>0?' · meta: <b>'+Math.ceil(tot/sm-1e-9)+' unidades</b>':'')+'.</div>';
+    },
+    delLabel:function(){ return isNew ? "" : "Excluir esta conta"; },
+    onDel:function(){ if(!adopt()) return; var nm=S.cfg.contas[i].nome; S.cfg.contas.splice(i,1); logHist("Conta fixa excluída: "+nm); finishCfg("Conta excluída"); },
+    save:function(v){
+      var nome=(v.nome||"").trim();
+      if(!nome) return "Escreva o nome da conta.";
+      if(v.valor===null || isNaN(v.valor)) return "Informe o valor por mês.";
+      if(!adopt()) return;
+      var val=Math.round(n(v.valor)*100)/100;
+      if(isNew){ S.cfg.contas.push({nome:nome, valor:val}); logHist("Conta fixa nova: "+nome+" · "+brl(val)); }
+      else{ var c0=S.cfg.contas[i]; if(n(c0.valor)!==val) logHist("Conta fixa "+c0.nome+": "+brl(c0.valor)+" → "+brl(val)); c0.nome=nome; c0.valor=val; }
+      finishCfg(isNew?"Conta adicionada":"Conta atualizada");
+    }
+  });
+}
+
 /* ================= FOLHA DE LANÇAMENTO ================= */
 var F = null;
-var TIPOS = [["venda","Vendi","Vendi um produto"],["gasto","Paguei ou comprei","Compra, conta, taxa ou salário"],["brinde","Dei ou usei","Brinde ou uso próprio"],["entrada","Entrou outro dinheiro","Dinheiro que não é venda"]];
+var TIPOS = [["venda","Vendi","Vendi um produto"],["gasto","Paguei ou comprei","Compra, conta, taxa ou salário"],["brinde","Dei, usei ou perdi","Brinde, uso próprio ou perda"],["entrada","Entrou outro dinheiro","Dinheiro que não é venda"]];
 var GRUPO_NOME = {"Compra para estoque":"Mercadoria e material para vender","Despesa variável":"Despesas que mudam com as vendas","Conta fixa":"Contas que chegam todo mês","Salário":"O seu salário"};
 var GASTO_GRUPOS = ["Compra para estoque","Despesa variável","Conta fixa","Salário"];
-function tipoDe(cat){ if(cat==="Venda") return "venda"; if(cat==="Brinde/uso próprio") return "brinde"; if(cat==="Outra entrada") return "entrada"; return "gasto"; }
-function openForm(id){
+function tipoDe(cat){ if(cat==="Venda") return "venda"; if(C.isRet(cat)) return "brinde"; if(cat==="Outra entrada") return "entrada"; return "gasto"; }
+var LIN_NOME = {"Mel fracionado":"Mel que você envasou","Entreposto":"Produtos do entreposto","Outros produtos":"Outros produtos"};
+function prodOptions(sel, filt){
+  var o = '<option value="">Toque para escolher…</option>';
+  C.LINHAS.forEach(function(lin){
+    var ps = M.prods.filter(function(x){ return x.linha===lin && (!x.arq || x.key===sel) && (!filt || filt(x)); });
+    if(ps.length) o += '<optgroup label="'+esc(LIN_NOME[lin])+'">'+ps.map(function(x){ return '<option value="'+x.key+'"'+(sel===x.key?" selected":"")+'>'+esc(x.nome)+'</option>'; }).join("")+'</optgroup>';
+  });
+  return o;
+}
+function openForm(id, preset){
   if(S.example && S.hasOwn){ toast("Você está vendo o exemplo. Volte aos seus dados para lançar."); return; }
   var l = id ? S.lanc.filter(function(x){ return x.id===id; })[0] : null;
   if(id && !l) return;
   var defDate = (S.mes===todayISO().slice(0,7)) ? todayISO() : (S.mes+"-01");
   F = l ? {id:l.id, data:l.data, tipo:tipoDe(l.cat), cat:l.cat, prod:l.prod, desc:l.desc, qtd:l.qtd, valor:l.valor, pag:l.pag, valorTouched:true, del:false, err:"", prodNome:l.prodNome}
         : {id:null, data:defDate, tipo:"venda", cat:"Venda", prod:"", desc:"", qtd:null, valor:null, pag:"Pix", valorTouched:false, del:false, err:""};
+  if(!l && preset){ if(preset.tipo) F.tipo=preset.tipo; F.cat = preset.cat || (F.tipo==="venda"?"Venda":F.tipo==="brinde"?"Brinde/uso próprio":F.tipo==="entrada"?"Outra entrada":""); if(preset.prod) F.prod=preset.prod; }
   F.opener = document.activeElement;
   renderForm();
   var sc=$("scrim"), sh=$("sheet"); sc.hidden=false; sh.hidden=false;
@@ -1802,6 +2257,7 @@ function readForm(){
   var g=function(id){ var e=$(id); return e?e.value:undefined; };
   if($("fData")) F.data = g("fData");
   if($("fCat")) F.cat = g("fCat");
+  if($("fRet")) F.cat = g("fRet");
   if($("fProd")) F.prod = g("fProd");
   if($("fDesc")) F.desc = g("fDesc");
   if($("fPag")) F.pag = g("fPag");
@@ -1809,7 +2265,7 @@ function readForm(){
   if($("fValor")){ var v=parseNum(g("fValor")); F.valor = (v===null||isNaN(v))?null:v; F.valorRaw=g("fValor"); }
 }
 function renderForm(){
-  var isP = F.tipo==="venda"||F.tipo==="brinde";
+  var isP = F.tipo==="venda"||F.tipo==="brinde"||(F.tipo==="gasto"&&F.cat==="Reposição de produto");
   var p = F.prod ? M.pm[F.prod] : null;
   var k = 0;
   function st(t){ k++; return '<span class="fl"><span class="stepn">'+k+'</span>'+esc(t)+'</span>'; }
@@ -1831,16 +2287,13 @@ function renderForm(){
     else h += hint("Ex.: compra de produtos do entreposto, embalagens, combustível, taxa da maquininha, seu salário.");
     h += '</label>';
   }
+  if(F.tipo==="brinde"){
+    h += '<label class="f fq" for="fRet">'+st("O que foi?")+'<select class="sel" id="fRet"><option value="Brinde/uso próprio"'+(F.cat!=="Perda/quebra"?" selected":"")+'>Dei de brinde ou usei</option><option value="Perda/quebra"'+(F.cat==="Perda/quebra"?" selected":"")+'>Perdi, quebrou ou venceu</option></select></label>';
+  }
   if(isP){
-    var opts = '<option value="">Toque para escolher…</option>';
-    ["Mel fracionado","Entreposto"].forEach(function(lin){
-      opts += '<optgroup label="'+(lin==="Entreposto"?"Produtos do entreposto":"Mel que você envasou")+'">'+M.prods.filter(function(x){ return x.linha===lin; }).map(function(x){
-        var sr = M.est.rows.filter(function(r){ return r.p.key===x.key; })[0];
-        return '<option value="'+x.key+'"'+(F.prod===x.key?" selected":"")+'>'+esc(x.nome)+'</option>';
-      }).join("")+'</optgroup>';
-    });
+    var opts = prodOptions(F.prod);
     if(F.prod && !p) opts += '<option value="'+esc(F.prod)+'" selected>'+esc(F.prodNome||F.prod)+' (não existe mais)</option>';
-    h += '<label class="f fq" for="fProd">'+st(F.tipo==="venda"?"Qual produto você vendeu?":"Qual produto saiu?")+'<select class="sel" id="fProd">'+opts+'</select>'+(p ? hint('Preço da tabela: <b>'+brl(p.preco)+'</b> · Em estoque: <b>'+num((M.est.rows.filter(function(r){ return r.p.key===p.key; })[0]||{atual:0}).atual)+'</b>') : hint("Depois de escolher, aparecem aqui o preço da tabela e quanto ainda tem em estoque."))+'</label>';
+    h += '<label class="f fq" for="fProd">'+st(F.tipo==="venda"?"Qual produto você vendeu?":F.tipo==="gasto"?"Qual produto você comprou?":"Qual produto saiu?")+'<select class="sel" id="fProd">'+opts+'</select>'+(p ? hint('Preço da tabela: <b>'+brl(p.preco)+'</b> · Em estoque: <b>'+num((M.est.rows.filter(function(r){ return r.p.key===p.key; })[0]||{atual:0}).atual)+'</b>') : hint("Depois de escolher, aparecem aqui o preço da tabela e quanto ainda tem em estoque."))+'</label>';
   }
   var qLabel = isP ? "Quantas unidades?" : (F.cat==="Compra de mel em balde" ? "Quantos quilos?" : "Quantidade (pode deixar em branco)");
   h += '<label class="f fq" for="fQtd">'+st(qLabel)+'<input class="inp num" id="fQtd" inputmode="decimal" placeholder="'+(isP?"Ex.: 5":"")+'" value="'+esc(F.qtdRaw!==undefined?F.qtdRaw:fmtIn(F.qtd))+'" autocomplete="off">'+(isP?hint("Só o número, sem letras."):"")+'</label>';
@@ -1874,6 +2327,10 @@ function previewHTML(){
     if(F.id){ var old=S.lanc.filter(function(x){ return x.id===F.id; })[0]; if(old && old.prod===p.key && old.cat==="Venda") disp += n(old.qtd); }
     return '<div class="preview good">Sobra desta venda: <b>'+brl(sobra)+'</b> ('+pct(v?sobra/v:0)+'). Custo dos produtos: '+brl(custo)+'.'+(q>disp?' <br><span class="neg">Atenção: só há '+num(disp)+' em estoque.</span>':'')+'</div>';
   }
+  if(F.tipo==="gasto" && F.cat==="Reposição de produto" && p){
+    var er = M.est.rows.filter(function(r){ return r.p.key===p.key; })[0];
+    return '<div class="preview good">O estoque de '+esc(p.nome)+' passa de '+num(er?er.atual:0)+' para <b>'+num((er?er.atual:0)+n(F.qtd))+'</b>.</div>';
+  }
   if(F.tipo==="brinde" && p){
     return '<div class="preview">Sai do estoque e entra no resumo a preço de custo: <b>'+brl(n(F.qtd)*p.custo)+'</b>.</div>';
   }
@@ -1896,19 +2353,19 @@ function onFormChange(e){
 function saveForm(){
   readForm();
   var f=F;
-  var cat = f.tipo==="venda"?"Venda":f.tipo==="brinde"?"Brinde/uso próprio":f.tipo==="entrada"?"Outra entrada":f.cat;
+  var cat = f.tipo==="venda"?"Venda":f.tipo==="brinde"?(f.cat==="Perda/quebra"?"Perda/quebra":"Brinde/uso próprio"):f.tipo==="entrada"?"Outra entrada":f.cat;
   var err="";
   if(!f.data || !/^\d{4}-\d{2}-\d{2}$/.test(f.data)) err="Escolha a data.";
   else if(!cat) err="Escolha a categoria do gasto.";
-  else if((f.tipo==="venda"||f.tipo==="brinde") && !f.prod) err="Escolha o produto.";
-  else if((f.tipo==="venda"||f.tipo==="brinde") && !(n(f.qtd)>0)) err="Informe quantas unidades.";
+  else if(C.needsProd(cat) && !f.prod) err="Escolha o produto.";
+  else if(C.needsProd(cat) && !(n(f.qtd)>0)) err="Informe quantas unidades.";
   else if(f.qtdRaw && isNaN(parseNum(f.qtdRaw))) err="A quantidade precisa ser um número.";
   else if(f.valorRaw && isNaN(parseNum(f.valorRaw))) err="O valor precisa ser um número, por exemplo 165,00.";
-  else if(f.tipo!=="brinde" && !(n(f.valor)>0)) err="Informe o valor.";
+  else if(f.tipo!=="brinde" && cat!=="Reposição de produto" && !(n(f.valor)>0)) err="Informe o valor.";
   else if(n(f.valor)<0 || n(f.qtd)<0) err="Não use valores negativos.";
   if(err){ f.err=err; renderForm(); var ea=$("sheet").querySelector(".err"); if(ea && ea.scrollIntoView) ea.scrollIntoView({block:"nearest"}); return; }
   if(!adopt()) return;
-  var rec = {id:f.id||uid(), data:f.data, cat:cat, prod:(f.tipo==="venda"||f.tipo==="brinde")?f.prod:"", desc:(f.desc||"").trim().slice(0,140),
+  var rec = {id:f.id||uid(), data:f.data, cat:cat, prod:C.needsProd(cat)?f.prod:"", desc:(f.desc||"").trim().slice(0,140),
     qtd: f.qtd===null?null:n(f.qtd), valor: f.tipo==="brinde" && !(n(f.valor)>0) ? null : (f.valor===null?null:Math.round(n(f.valor)*100)/100), pag:f.pag||""};
   var touched=[rec.data.slice(0,7)];
   if(f.id){
@@ -2009,7 +2466,18 @@ function parseWorkbook(wb){
   cfg.rotBis=numOr(cellV(cs,"B20"),0); cfg.kg500=numOr(cellV(cs,"B21"),0.5); cfg.kg280=numOr(cellV(cs,"B22"),0.28);
   for(var i=0;i<6;i++){ var r=26+i; cfg.ent[i]={nome:strOr(cellV(cs,"A"+r), d.ent[i].nome), unid:Math.round(numOr(cellV(cs,"B"+r),0)), custo:numOr(cellV(cs,"C"+r),0), emb:numOr(cellV(cs,"D"+r),0)}; }
   cfg.rotEnt=numOr(cellV(cs,"B34"),0); cfg.rotulosComprados=Math.round(numOr(cellV(cs,"B35"),0)); cfg.freteEnt=numOr(cellV(cs,"B36"),0);
-  for(i=0;i<5;i++){ var rr=41+i; cfg.contas[i]={nome:strOr(cellV(cs,"A"+rr), d.contas[i].nome), valor:numOr(cellV(cs,"B"+rr),0)}; }
+  cfg.contas=[];
+  for(i=0;i<5;i++){ var rr=41+i, cn=strOr(cellV(cs,"A"+rr),""), cv=numOr(cellV(cs,"B"+rr),0); if(cn || cv) cfg.contas.push({nome:cn||("Conta "+(i+1)), valor:cv}); }
+  cfg.extra=[]; cfg.hist=[];
+  var ns = wb.Sheets["Novos produtos"];
+  if(ns){
+    for(var nr=2; nr<=61; nr++){
+      var nn = strOr(cellV(ns,"A"+nr),""); if(!nn) continue;
+      var xid = "i"+nr+Math.random().toString(36).slice(2,6), ln = strOr(cellV(ns,"B"+nr),"Outros produtos");
+      cfg.extra.push({id:xid, nome:nn, linha:C.LINHAS.indexOf(ln)>=0?ln:"Outros produtos", custo:numOr(cellV(ns,"C"+nr),0), emb:numOr(cellV(ns,"D"+nr),0), rot:numOr(cellV(ns,"E"+nr),0), frete:numOr(cellV(ns,"F"+nr),0), inicial:Math.round(numOr(cellV(ns,"G"+nr),0)), arq:/^s/i.test(strOr(cellV(ns,"L"+nr),""))});
+      cfg.prod["n"+xid] = {preco:numOr(cellV(ns,"H"+nr),0), vendas:Math.round(numOr(cellV(ns,"I"+nr),0)), min:Math.round(numOr(cellV(ns,"J"+nr),0)), repos:Math.round(numOr(cellV(ns,"K"+nr),0))};
+    }
+  }
   if(cfg.perda>=1) cfg.perda = cfg.perda/100;
   var es = wb.Sheets["Estoque"];
   C.PROD_KEYS.forEach(function(k,j){
@@ -2045,10 +2513,10 @@ function onFile(file){
     var tmpE = C.enrich(res.lanc, C.products(res.cfg)), iss = tmpE.filter(function(l){ return l.issues.length; }).length;
     var temDados = S.hasOwn && !S.example && S.lanc.length;
     confirmSheet("Importar "+file.name,
-      '<p style="margin:0">Encontrei <b>'+res.lanc.length+' lançamentos</b> em '+Object.keys(ms).length+' '+(Object.keys(ms).length===1?"mês":"meses")+', os custos e preços dos 10 produtos e as contas fixas.</p>'+
+      '<p style="margin:0">Encontrei <b>'+res.lanc.length+' lançamento'+(res.lanc.length===1?"":"s")+'</b> em '+Object.keys(ms).length+' '+(Object.keys(ms).length===1?"mês":"meses")+', os custos e preços dos 10 produtos da planilha'+((res.cfg.extra||[]).length?', '+res.cfg.extra.length+' produto'+(res.cfg.extra.length===1?"":"s")+' que você cadastrou':'')+' e as contas fixas.</p>'+
       (res.semData?'<div class="flag">'+res.semData+' linha'+(res.semData>1?"s":"")+' sem data ficaram de fora.</div>':'')+
       (iss?'<div class="flag">'+iss+' lançamento'+(iss>1?"s":"")+' com alerta para conferir depois (produto ou categoria que não batem, venda abaixo do custo etc.).</div>':'')+
-      (temDados?'<div class="flag c">Isso substitui os '+S.lanc.length+' lançamentos e os custos que você tem hoje no app.</div>':''),
+      (temDados?'<div class="flag c">Isso substitui '+(S.lanc.length===1?'o lançamento':'os '+S.lanc.length+' lançamentos')+', os produtos e os custos que você tem hoje no app.</div>':''),
       "Importar", !!temDados,
       function(){
         var olds = S.example?[]:storedMonths();
@@ -2081,10 +2549,12 @@ function buildWorkbook(){
   cfg.ent.forEach(function(e,i){ var r=26+i; c.push(["A"+r,e.nome],["B"+r,n(e.unid)],["C"+r,n(e.custo)],["D"+r,n(e.emb)],["E"+r,rnd(n(e.unid)*(n(e.custo)+n(e.emb)))]); });
   c.push(["A32","Total do lote"],["B32",M.lote.totalUnid],["E32",rnd(M.lote.totalCompra)],["A34","Rótulo (por unidade)"],["B34",n(cfg.rotEnt)],["A35","Rótulos comprados"],["B35",n(cfg.rotulosComprados)],
     ["A36","Frete total da compra"],["B36",n(cfg.freteEnt)],["A37","Frete por unidade"],["B37",rnd(M.lote.freteUnit)],["A38","Total investido no lote"],["B38",rnd(M.lote.totalInvestido)],["A40","3. Contas fixas do mês"]);
-  cfg.contas.forEach(function(k,i){ c.push(["A"+(41+i),k.nome],["B"+(41+i),n(k.valor)]); });
+  cfg.contas.slice(0,4).forEach(function(k,i){ c.push(["A"+(41+i),k.nome],["B"+(41+i),n(k.valor)]); });
+  if(cfg.contas.length===5) c.push(["A45",cfg.contas[4].nome],["B45",n(cfg.contas[4].valor)]);
+  else if(cfg.contas.length>5) c.push(["A45","Outras contas fixas (soma)"],["B45",rnd(cfg.contas.slice(4).reduce(function(a,k){ return a+n(k.valor); },0))]);
   c.push(["A46","Total de contas fixas no mês"],["B46",rnd(M.meta.contas)],["A48","4. Custo, preço e sobra de cada produto"]);
   ["Produto","Linha","Mel ou produto","Frete","Embalagem","Rótulo","Custo por unidade","Preço de venda","Sobra por unidade (R$)","Margem (%)","Nunca vender abaixo de","Vendas num mês normal (unidades)","Sobra no mês (R$)"].forEach(function(t,j){ c.push([XLSX.utils.encode_cell({r:48,c:j}),t]); });
-  M.prods.forEach(function(p,i){ var r=50+i; c.push(["A"+r,p.nome],["B"+r,p.linha],["C"+r,rnd(p.mel)],["D"+r,rnd(p.frete)],["E"+r,rnd(p.emb)],["F"+r,rnd(p.rot)],["G"+r,rnd(p.custo)],["H"+r,p.preco],["I"+r,rnd(p.sobra)],["J"+r,rnd(p.margem*100)],["K"+r,rnd(p.custo)],["L"+r,p.vendasN],["M"+r,rnd(p.sobraMes)]); });
+  M.prods.filter(function(p){ return !p.extra; }).forEach(function(p,i){ var r=50+i; c.push(["A"+r,p.nome],["B"+r,p.linha],["C"+r,rnd(p.mel)],["D"+r,rnd(p.frete)],["E"+r,rnd(p.emb)],["F"+r,rnd(p.rot)],["G"+r,rnd(p.custo)],["H"+r,p.preco],["I"+r,rnd(p.sobra)],["J"+r,rnd(p.margem*100)],["K"+r,rnd(p.custo)],["L"+r,p.vendasN],["M"+r,rnd(p.sobraMes)]); });
   c.push(["A60","Total de um mês normal"],["L60",M.meta.unidN],["M60",rnd(M.meta.sobraN)]);
   /* Lançamentos — cabeçalho na linha 4, dados a partir da linha 5 */
   var l=[["A1","Lançamentos"],["A2","Colunas A a G são os seus lançamentos. H a K foram calculadas pelo app."]];
@@ -2096,12 +2566,12 @@ function buildWorkbook(){
   });
   /* Estoque — mesmas linhas da planilha (9 a 18) */
   var t=M.est.tot, es=[["A1","Estoque"],["A3","Total investido nos produtos"],["B3",rnd(t.investido)],["A4","Já voltou em vendas"],["B4",rnd(t.voltou)],["A5","Do dinheiro investido, já voltou (%)"],["B5",rnd(t.pct*100)],["A6","Valor parado no estoque"],["B6",rnd(t.parado)]];
-  ["Produto","Linha","Estoque inicial (lote)","Reposição (unidades)","Vendidas","Brindes e uso próprio","Estoque atual","Estoque mínimo","Situação","Custo por unidade","Valor parado no estoque","Investido","Já voltou em vendas","% que já voltou"].forEach(function(h,j){ es.push([XLSX.utils.encode_cell({r:7,c:j}),h]); });
+  ["Produto","Linha","Estoque inicial (lote)","Ajuste manual de reposição","Vendidas","Brindes e uso próprio","Estoque atual","Estoque mínimo","Situação","Custo por unidade","Valor parado no estoque","Investido","Já voltou em vendas","% que já voltou"].forEach(function(h,j){ es.push([XLSX.utils.encode_cell({r:7,c:j}),h]); });
   M.est.rows.forEach(function(x,i){ var r=9+i; es.push(["A"+r,x.p.nome],["B"+r,x.p.linha],["C"+r,x.p.inicial],["D"+r,x.p.repos],["E"+r,x.vendidas],["F"+r,x.brindes],["G"+r,x.atual],["H"+r,x.p.min],["I"+r,x.sit],["J"+r,rnd(x.p.custo)],["K"+r,rnd(x.parado)],["L"+r,rnd(x.investido)],["M"+r,rnd(x.voltou)],["N"+r,rnd(x.pct*100)]); });
   /* Resumo do ano */
   var ms=C.year(M.lancE, S.ano, M.meta.meta, M.prods), R=[["A1","Resumo do ano "+S.ano]];
   ["R$"].concat(MES3,["Total"]).forEach(function(h,j){ R.push([XLSX.utils.encode_cell({r:2,c:j}),h]); });
-  [["Vendas de mel fracionado","vf"],["Vendas do entreposto","ve"],["Outras entradas","out"],["Total de vendas","total"],["(−) Custo dos produtos vendidos","cpv"],["(−) Taxa maquininha e despesas variáveis","dv"],["(−) Brindes e uso próprio","br"],["Sobra das vendas","sobra"],["(−) Contas fixas","cf"],["Lucro do mês","lucro"],["Salário","sal"],["Ficou na reserva","reserva"],["Saiu para comprar estoque","compras"],["Saldo do caixa no mês","caixa"],["Unidades vendidas","unid"]].forEach(function(d,i){
+  [["Vendas de mel fracionado","vf"],["Vendas do entreposto","ve"],["Vendas de outros produtos","vo"],["Outras entradas","out"],["Total de vendas","total"],["(−) Custo dos produtos vendidos","cpv"],["(−) Taxa maquininha e despesas variáveis","dv"],["(−) Brindes, perdas e uso próprio","br"],["Sobra das vendas","sobra"],["(−) Contas fixas","cf"],["Lucro do mês","lucro"],["Salário","sal"],["Ficou na reserva","reserva"],["Saiu para comprar estoque","compras"],["Saldo do caixa no mês","caixa"],["Unidades vendidas","unid"]].forEach(function(d,i){
     var r=i+3, tot=0; R.push([XLSX.utils.encode_cell({r:r,c:0}),d[0]]);
     ms.forEach(function(m,j){ R.push([XLSX.utils.encode_cell({r:r,c:j+1}),rnd(m[d[1]])]); tot+=n(m[d[1]]); });
     R.push([XLSX.utils.encode_cell({r:r,c:13}),rnd(tot)]);
@@ -2110,6 +2580,10 @@ function buildWorkbook(){
   XLSX.utils.book_append_sheet(wb, sheet(l,[12,24,28,30,11,12,16,20,10,16,14]), "Lançamentos");
   XLSX.utils.book_append_sheet(wb, sheet(es,[28,16,12,12,10,12,12,12,10,12,14,12,14,10]), "Estoque");
   XLSX.utils.book_append_sheet(wb, sheet(R,[38]), "Resumo do ano");
+  var NP=[];
+  ["Nome","Linha","Custo de compra por unidade","Embalagem por unidade","Rótulo por unidade","Frete por unidade","Estoque inicial","Preço de venda","Vendas num mês normal","Estoque mínimo","Ajuste manual de reposição","Arquivado"].forEach(function(t,j){ NP.push([XLSX.utils.encode_cell({r:0,c:j}),t]); });
+  (cfg.extra||[]).forEach(function(x,i){ var r=2+i, pp=cfg.prod["n"+x.id]||{}; NP.push(["A"+r,x.nome],["B"+r,x.linha],["C"+r,n(x.custo)],["D"+r,n(x.emb)],["E"+r,n(x.rot)],["F"+r,n(x.frete)],["G"+r,n(x.inicial)],["H"+r,n(pp.preco)],["I"+r,n(pp.vendas)],["J"+r,n(pp.min)],["K"+r,n(pp.repos)],["L"+r,x.arq?"Sim":"Não"]); });
+  XLSX.utils.book_append_sheet(wb, sheet(NP,[28,16,14,14,14,14,12,12,12,12,12,10]), "Novos produtos");
   return wb;
 }
 async function exportXlsx(){
@@ -2163,8 +2637,12 @@ document.addEventListener("click", function(e){
   if((x=c("[data-tour-go]"))){ var go=x.getAttribute("data-tour-go"); endTour(); if(go==="ex"){ setView("painel"); } else act(go); return; }
   if((x=c("[data-sug]"))){ applySug([x.getAttribute("data-sug")]); return; }
   if(c("[data-sug-all]")){ applySug(M.prods.filter(function(p){ return p.abaixoSug; }).map(function(p){ return p.key; })); return; }
-  if(c("[data-save]")){ saveForm(); return; }
-  if(c("[data-del]")){ deleteForm(); return; }
+  if(c("[data-usesug]") && F && F.gen){ readGen(); var pp=M.pm[F.vals.prod]; if(pp){ var r0=buyRef(pp), nc0 = pp.extra ? n(F.vals.custo)+n(F.vals.emb)+n(F.vals.rot)+n(F.vals.frete) : (r0 ? pp.custo-r0.get()+n(F.vals.custo) : pp.custo); F.vals.preco=C.sugerido(nc0); delete F.vals.precoRaw; renderGen(); } return; }
+  if((x=c("[data-hub]"))){ hub(x.getAttribute("data-hub"), x.getAttribute("data-key")); return; }
+  if((x=c("[data-prod]"))){ sheetProduto(x.getAttribute("data-prod")); return; }
+  if((x=c("[data-conta]"))){ sheetConta(Number(x.getAttribute("data-conta"))); return; }
+  if(c("[data-save]")){ if(F && F.gen) genSave(); else saveForm(); return; }
+  if(c("[data-del]")){ if(F && F.gen) genDel(); else deleteForm(); return; }
   if(c("[data-conf]")){ var fn=CONF; CONF=null; closeForm(); if(fn) fn(); return; }
 });
 document.addEventListener("change", function(e){
@@ -2174,12 +2652,13 @@ document.addEventListener("change", function(e){
   if(t.id==="anoSel"){ S.ano=t.value; renderView(); return; }
   if(t.id==="lfMes"){ S.lf.mes=t.value; lastFocusId="lfMes"; renderView(); return; }
   if(t.id==="lfCat"){ S.lf.cat=t.value; lastFocusId="lfCat"; renderView(); return; }
-  if(t.closest && t.closest("#sheet")){ onFormChange(e); return; }
+  if(t.closest && t.closest("#sheet")){ if(F && F.gen) genChange(e); else onFormChange(e); return; }
   if(t.getAttribute && t.getAttribute("data-path")){ var nx = null; onCfgInput(t); return; }
 });
 document.addEventListener("input", function(e){
   var t=e.target;
   if(t.id==="lfQ"){ S.lf.q=t.value; clearTimeout(t._d); var pos=t.selectionStart; t._d=setTimeout(function(){ lastFocusId="lfQ"; renderView(); var el=$("lfQ"); if(el){ try{ el.setSelectionRange(pos,pos); }catch(_){} } },220); return; }
+  if(t.closest && t.closest("#sheet") && F && F.gen){ genInput(e); return; }
   if(t.closest && t.closest("#sheet") && (t.id==="fQtd"||t.id==="fValor")) onFormChange(e);
 });
 document.addEventListener("keydown", function(e){
@@ -2188,7 +2667,7 @@ document.addEventListener("keydown", function(e){
     if(F){ if(F.tour) endTour(); else closeForm(); }
     return;
   }
-  if(e.key==="Enter" && F && !F.confirm && e.target && e.target.tagName==="INPUT" && e.target.closest("#sheet")){ e.preventDefault(); saveForm(); return; }
+  if(e.key==="Enter" && F && !F.confirm && e.target && e.target.tagName==="INPUT" && e.target.closest("#sheet")){ e.preventDefault(); if(F.gen) genSave(); else saveForm(); return; }
   if(e.key==="Enter" && e.target && e.target.getAttribute && e.target.getAttribute("data-path")){ e.preventDefault(); e.target.blur(); return; }
   if(e.key==="Tab" && F){
     var f=$("sheet").querySelectorAll("button,input,select"); if(!f.length) return;
