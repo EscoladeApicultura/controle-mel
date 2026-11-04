@@ -616,6 +616,18 @@ body.gated .fab{display:none}
 .acctbox{padding:8px 12px 4px;display:flex;flex-direction:column;gap:1px}
 .acctbox b{font-size:14px}
 .acctbox small{color:var(--muted);font-size:12px;overflow-wrap:anywhere}
+.gtabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.25);align-self:stretch;margin-top:6px}
+.gtabs button{padding:10px;border:0;border-radius:10px;background:transparent;color:var(--muted);font-weight:700;font-size:15px}
+.gtabs button[aria-selected="true"]{background:linear-gradient(100deg,var(--gold2),var(--gold));color:var(--ink)}
+.gform{display:flex;flex-direction:column;gap:12px;align-self:stretch;text-align:left}
+.gf{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:var(--fg)}
+.gform .inp{font-size:16px;padding:13px 14px;width:100%}
+.gform .fh{margin-top:-6px}
+.pw{position:relative;display:block}
+.pw .inp{padding-right:90px}
+.pwt{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:rgba(255,255,255,.06);color:var(--gold2);font-weight:600;font-size:13px;padding:7px 10px;border-radius:9px}
+.gform .gbtn{background:linear-gradient(100deg,var(--gold2),var(--gold));color:var(--ink);font-weight:700}
+.gok{padding:12px 14px;border-radius:12px;border:1px solid rgba(98,214,160,.45);background:rgba(98,214,160,.08);font-size:14px;align-self:stretch;text-align:left}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -686,10 +698,19 @@ body.gated .fab{display:none}
     <h1>Controle Financeiro <span class="goldtxt">Revenda Mel</span></h1>
     <div id="gateLoad"><p class="gsub">Abrindo o seu controle…</p><div class="spin" aria-hidden="true"></div></div>
     <div id="gateLogin" hidden>
-      <p class="gsub">Entre com a sua conta Google. Seus lançamentos ficam salvos nela e aparecem em qualquer celular ou computador.</p>
-      <button class="gbtn" id="gBtn" type="button"><svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Entrar com Google</button>
-      <div class="gnote" id="gateInApp" hidden>Você abriu o link dentro de outro aplicativo. Se o botão não funcionar, toque nos <b>⋮</b> ou em <b>Abrir no navegador</b> e use o Chrome ou o Safari.<br><button class="linkbtn" id="gCopy" type="button">Copiar o link</button></div>
-      <ol class="gsteps"><li>Toque em <b>Entrar com Google</b>.</li><li>Escolha a sua conta (a do celular ou outra).</li><li>Pronto: o app abre no seu controle.</li></ol>
+      <div class="gtabs" id="gTabs" role="tablist" aria-label="Entrar ou criar conta"><button type="button" role="tab" data-gm="entrar" aria-selected="true">Entrar</button><button type="button" role="tab" data-gm="criar" aria-selected="false">Criar conta</button></div>
+      <p class="gsub" id="gSub">Entre com o seu nome de usuário e a sua senha.</p>
+      <form id="gForm" class="gform" novalidate>
+        <label class="gf" for="gUser">Nome de usuário<input class="inp" id="gUser" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="30" placeholder="Ex.: maria.silva"></label>
+        <span class="fh" id="gUserHint" hidden>Letras e números, sem espaço e sem acento. Pode usar ponto. Ex.: <b>maria.silva</b></span>
+        <label class="gf" for="gPass" id="gPassL">Senha<span class="pw"><input class="inp" id="gPass" type="password" autocomplete="current-password" placeholder="Mínimo 6 caracteres"><button type="button" class="pwt" data-pw="gPass">Mostrar</button></span></label>
+        <label class="gf" for="gPass2" id="gPass2L" hidden>Repita a senha<input class="inp" id="gPass2" type="password" autocomplete="new-password" placeholder="Digite a mesma senha"></label>
+        <button class="gbtn" id="gGo" type="submit">Entrar</button>
+      </form>
+      <div class="gok" id="gOk" role="status" hidden></div>
+      <button class="linkbtn" type="button" data-gm="esqueci" id="gForgotLink">Esqueci minha senha</button>
+      <button class="linkbtn" type="button" data-gm="entrar" id="gBack" hidden>Voltar para entrar</button>
+      <ol class="gsteps" id="gSteps" hidden><li>Escolha um nome de usuário fácil de lembrar.</li><li>Crie uma senha com pelo menos 6 caracteres.</li><li>Anote os dois: você usa em qualquer celular ou computador.</li></ol>
       <p class="gpriv">Só você vê os seus números. A escola não tem acesso aos seus lançamentos.</p>
     </div>
     <div class="gerr" id="gateErr" role="alert" hidden></div>
@@ -1074,7 +1095,7 @@ function status(kind, txt){
 }
 function refreshStatus(){
   if(S.example) return status("warn", S.hasOwn ? "Vendo o exemplo" : "Exemplo <span class=\"full\">· nada salvo ainda</span>");
-  if(P.mode==="db") return status("ok","Salvo <span class=\"full\">na sua conta Google</span>");
+  if(P.mode==="db") return status("ok","Salvo <span class=\"full\">na sua conta</span>");
   if(P.mode==="local") return status("ok","Salvo <span class=\"full\">neste aparelho</span>");
   if(P.mode==="ro") return status("err","Não está salvando");
   status("", "Carregando");
@@ -1187,31 +1208,74 @@ function showGate(mode, msg){
   $("gateLoad").hidden = mode!=="load";
   $("gateLogin").hidden = mode!=="login";
   $("gateErr").hidden = !msg; $("gateErr").innerHTML = msg||"";
-  $("gateInApp").hidden = !(mode==="login" && inApp());
+  if(mode==="login") setGMode(GMODE);
 }
 function hideGate(){ $("gate").hidden=true; document.body.classList.remove("gated"); }
 function renderAccount(){
   var u=AUTH.user, el=$("acct");
   if(!el) return;
-  el.innerHTML = u ? '<div class="acctbox"><span class="eyebrow">Conectado como</span><b>'+esc(u.displayName||"")+'</b><small>'+esc(u.email||"")+'</small></div>' : "";
+  el.innerHTML = u ? '<div class="acctbox"><span class="eyebrow">Conectado como</span><b>'+esc(userFromEmail(u.email)||u.displayName||"")+'</b></div>' : "";
 }
-async function googleLogin(){
-  if(!fbReady()){ showGate("login","O app ainda não foi configurado. Avise a Escola de Apicultura."); return; }
-  var btn=$("gBtn"); btn.disabled=true;
+/* Login por nome de usuário e senha (conta da escola por trás) */
+var ESCOLA = {u:"escoladeapicultura", d:"gmail.com"};
+function userEmail(u){ return ESCOLA.u+"+"+u+"@"+ESCOLA.d; }
+function userFromEmail(e){ var m=/\+([^@]+)@/.exec(e||""); return m?m[1]:""; }
+function normUser(x){ return String(x||"").trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/\s+/g,"."); }
+function validUser(u){ return /^[a-z0-9][a-z0-9._-]{2,29}$/.test(u) && !/\.\.|[._-]$/.test(u); }
+var GMODE = "entrar";
+var GTXT = {
+  entrar:{sub:"Entre com o seu nome de usuário e a sua senha.", go:"Entrar"},
+  criar:{sub:"Primeira vez aqui? Crie o seu acesso em menos de um minuto.", go:"Criar minha conta"},
+  esqueci:{sub:"Digite o seu nome de usuário. A Escola de Apicultura recebe um link para você criar uma senha nova e te envia pelo WhatsApp.", go:"Pedir senha nova"}
+};
+function setGMode(m){
+  GMODE=m;
+  Array.prototype.forEach.call(document.querySelectorAll(".gtabs [data-gm]"),function(b){ b.setAttribute("aria-selected", String(b.getAttribute("data-gm")===m)); });
+  $("gTabs").hidden = m==="esqueci";
+  $("gSub").textContent = GTXT[m].sub;
+  $("gGo").textContent = GTXT[m].go;
+  $("gPassL").hidden = m==="esqueci";
+  $("gPass2L").hidden = m!=="criar";
+  $("gSteps").hidden = m!=="criar";
+  $("gUserHint").hidden = m!=="criar";
+  $("gForgotLink").hidden = m!=="entrar";
+  $("gBack").hidden = m!=="esqueci";
+  $("gPass").setAttribute("autocomplete", m==="criar"?"new-password":"current-password");
+  $("gOk").hidden = true; $("gateErr").hidden = true;
+}
+function gErr(msg){ var e=$("gateErr"); e.innerHTML=msg; e.hidden=false; $("gOk").hidden=true; try{ e.scrollIntoView({block:"nearest", behavior:"smooth"}); }catch(_){} }
+async function goLogin(){
+  if(!fbReady()){ gErr("O app ainda não foi configurado. Avise a Escola de Apicultura."); return; }
+  var u=normUser($("gUser").value), p=$("gPass").value, p2=$("gPass2").value, btn=$("gGo");
+  $("gUser").value=u; $("gateErr").hidden=true;
+  if(!validUser(u)){ gErr(u ? "Nome de usuário inválido. Use de 3 a 30 letras ou números, sem espaço e sem acento. Pode usar ponto, hífen e sublinhado. Ex.: <b>maria.silva</b>" : "Digite o seu nome de usuário."); $("gUser").focus(); return; }
+  if(GMODE!=="esqueci"){
+    if(p.length<6){ gErr(p ? "A senha precisa ter pelo menos 6 caracteres." : "Digite a sua senha."); $("gPass").focus(); return; }
+    if(GMODE==="criar" && p!==p2){ gErr("As duas senhas não são iguais. Digite de novo."); $("gPass2").focus(); return; }
+  }
+  var label=btn.textContent; btn.disabled=true; btn.textContent="Aguarde…";
   try{
-    var prov = new firebase.auth.GoogleAuthProvider();
-    prov.setCustomParameters({prompt:"select_account"});
-    await firebase.auth().signInWithPopup(prov);
+    var A=firebase.auth();
+    if(GMODE==="esqueci"){
+      await A.sendPasswordResetEmail(userEmail(u));
+      var ok=$("gOk"); ok.innerHTML="<b>Pedido enviado.</b> A Escola de Apicultura vai te mandar pelo WhatsApp um link para criar a senha nova. Depois é só voltar aqui e entrar."; ok.hidden=false;
+    }else if(GMODE==="criar"){
+      var cred = await A.createUserWithEmailAndPassword(userEmail(u), p);
+      try{ await cred.user.updateProfile({displayName:u}); }catch(_){}
+    }else{
+      await A.signInWithEmailAndPassword(userEmail(u), p);
+    }
   }catch(e){
-    var c = e && e.code || "";
-    var msg = "Não foi possível entrar. Tente de novo.";
-    if(c==="auth/popup-closed-by-user"||c==="auth/cancelled-popup-request") msg = "";
-    else if(c==="auth/popup-blocked") msg = "O navegador bloqueou a janela do Google. Toque de novo em <b>Entrar com Google</b>. Se continuar, abra o link no Chrome ou no Safari.";
-    else if(c==="auth/network-request-failed") msg = "Sem internet no momento. Confira a conexão e tente de novo.";
-    else if(c==="auth/unauthorized-domain") msg = "Este endereço ainda não foi liberado no Firebase. Avise a Escola de Apicultura.";
-    else if(c==="auth/operation-not-supported-in-this-environment"||c==="auth/web-storage-unsupported"||inApp()) msg = "Este navegador não permite entrar com o Google. Abra o link no <b>Chrome</b> ou no <b>Safari</b>.";
-    showGate("login", msg);
-  }finally{ btn.disabled=false; }
+    var c=e&&e.code||"", m="Não foi possível continuar. Tente de novo.";
+    if(c==="auth/email-already-in-use") m="O nome de usuário <b>"+esc(u)+"</b> já está em uso. Escolha outro, por exemplo <b>"+esc(u)+"2</b> ou <b>"+esc(u)+".mel</b>.";
+    else if(/invalid-credential|wrong-password|user-not-found|invalid-login-credentials/.test(c)) m="Usuário ou senha incorretos. Confira e tente de novo. Ainda não tem conta? Toque em <b>Criar conta</b>.";
+    else if(c==="auth/weak-password") m="Senha fraca. Use pelo menos 6 caracteres.";
+    else if(c==="auth/too-many-requests") m="Muitas tentativas seguidas. Espere alguns minutos e tente de novo.";
+    else if(c==="auth/network-request-failed") m="Sem internet no momento. Confira a conexão e tente de novo.";
+    else if(c==="auth/operation-not-allowed") m="O acesso por usuário e senha ainda não foi ligado. Avise a Escola de Apicultura.";
+    else if(c==="auth/invalid-email") m="Nome de usuário inválido. Use letras e números, sem espaço. Ex.: <b>maria.silva</b>";
+    gErr(m);
+  }finally{ btn.disabled=false; btn.textContent=label; }
 }
 async function logout(){
   try{ await flush(); }catch(e){}
@@ -1791,9 +1855,10 @@ var FAQ = [
   ["Onde lanço a taxa da maquininha?","<b>Lançar</b> → <b>Paguei ou comprei</b> → <b>Taxa maquininha</b>. Pode lançar uma vez no fim do mês com o total das taxas."],
   ["Tirei dinheiro para mim. Onde lanço?","<b>Lançar</b> → <b>Paguei ou comprei</b> → <b>Salário</b>. A regra de ouro é um salário fixo, pensado pelo mês fraco."],
   ["O caixa ficou negativo. Estou no prejuízo?","Não necessariamente. Em mês de compra de lote o dinheiro sai da conta, mas vira mercadoria. Olhe o <b>Lucro do mês</b> e, na tela Estoque, quanto do lote já voltou."],
-  ["Onde ficam os meus dados?","Na sua conta Google, guardados com segurança no Firebase (do Google). Só você vê os seus números. Ninguém da escola tem acesso."],
-  ["Troquei de celular. Perdi tudo?","Não. Abra o link no celular novo e toque em <b>Entrar com Google</b> com a mesma conta. Tudo aparece como estava."],
-  ["Posso usar no celular e no computador?","Pode. Entre com a mesma conta Google nos dois e os lançamentos aparecem iguais em todos os aparelhos."],
+  ["Onde ficam os meus dados?","Na sua conta do app, guardados com segurança na nuvem. Só você vê os seus números. Ninguém da escola tem acesso."],
+  ["Troquei de celular. Perdi tudo?","Não. Abra o link no celular novo e entre com o mesmo nome de usuário e senha. Tudo aparece como estava."],
+  ["Posso usar no celular e no computador?","Pode. Entre com o mesmo usuário e senha nos dois e os lançamentos aparecem iguais em todos os aparelhos."],
+["Esqueci minha senha. E agora?","Na tela de entrada, toque em <b>Esqueci minha senha</b> e digite o seu nome de usuário. A Escola de Apicultura te manda pelo WhatsApp um link para criar uma senha nova. Seus lançamentos continuam todos lá."],
 ["Como saio da minha conta?","Toque no botão <b>⋯</b> (canto de cima) e depois em <b>Sair da conta</b>. Use isso se o celular for de outra pessoa."],
   ["Posso continuar usando a planilha do Excel?","Pode. No botão <b>⋯</b> (canto de cima) você traz a sua planilha para o app com <b>Importar minha planilha</b>, e leva os dados de volta com <b>Baixar como planilha</b>."]
 ];
@@ -2630,7 +2695,8 @@ document.addEventListener("click", function(e){
   if((x=c("[data-guide-hide]"))){ lsSet("cfm_guide_"+x.getAttribute("data-guide-hide"),1); renderView(); return; }
   if((x=c("[data-guide-show]"))){ try{ localStorage.removeItem("cfm_guide_"+x.getAttribute("data-guide-show")); }catch(_){} renderView(); return; }
   if(c("[data-tour]")){ openTour(0); return; }
-  if(c("#gBtn")){ googleLogin(); return; }
+  if((x=c("[data-gm]"))){ setGMode(x.getAttribute("data-gm")); var gu=$("gUser"); if(gu) gu.focus(); return; }
+  if((x=c("[data-pw]"))){ var pi=$(x.getAttribute("data-pw")), sh=pi.type==="password"; pi.type=sh?"text":"password"; x.textContent=sh?"Ocultar":"Mostrar"; var p2i=$("gPass2"); if(p2i) p2i.type=pi.type; return; }
   if(c("#gCopy")){ var lk=location.href.split("#")[0]; try{ navigator.clipboard.writeText(lk).then(function(){ toast("Link copiado. Cole no Chrome ou no Safari."); }, function(){ toast(lk); }); }catch(_){ toast(lk); } return; }
   if((x=c("[data-tour-step]"))){ F.step=Number(x.getAttribute("data-tour-step")); renderTour(); return; }
   if(c("[data-tour-end]")){ endTour(); return; }
@@ -2676,6 +2742,7 @@ document.addEventListener("keydown", function(e){
     else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
   }
 });
+document.addEventListener("submit", function(e){ if(e.target && e.target.id==="gForm"){ e.preventDefault(); goLogin(); } });
 window.addEventListener("hashchange", function(){ var v=(location.hash||"").slice(1); if(VIEWS.indexOf(v)>=0 && v!==S.view){ S.view=v; renderView(); } });
 window.addEventListener("beforeunload", function(){ if(P.timer){ clearTimeout(P.timer); writeLocal(); } });
 
