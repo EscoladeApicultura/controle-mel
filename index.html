@@ -1973,6 +1973,7 @@ function openSheet(focusSel){
 }
 function closeForm(){
   if(!F) return;
+  if(typeof UPD!=="undefined" && UPD.pending){ UPD.pending=false; UPD.last=0; setTimeout(checkUpdate, 400); }
   var op=F.opener; F=null;
   var sc=$("scrim"), sh=$("sheet"); sc.classList.remove("on"); sh.classList.remove("on");
   setTimeout(function(){ if(!F){ sc.hidden=true; sh.hidden=true; sh.innerHTML=""; } }, 230);
@@ -2705,6 +2706,27 @@ document.addEventListener("keydown", function(e){
   }
 });
 document.addEventListener("submit", function(e){ if(e.target && e.target.id==="gForm"){ e.preventDefault(); goLogin(); } });
+
+/* atualização automática */
+var APP_VER = "1794854336";
+var UPD = {checking:false, last:0};
+async function checkUpdate(){
+  if(UPD.checking || Date.now()-UPD.last < 60000) return;
+  UPD.checking=true; UPD.last=Date.now();
+  try{
+    var r = await fetch(location.pathname+"?v="+Date.now(), {cache:"no-store"});
+    if(!r.ok) return;
+    var m = /var APP_VER = "(\d+)"/.exec(await r.text());
+    if(m && m[1]!==APP_VER){
+      if(F){ toast("Tem uma versão nova do app. Ela abre quando você fechar esta janela."); UPD.pending=true; return; }
+      try{ await flush(); }catch(_){}
+      location.reload();
+    }
+  }catch(_){}finally{ UPD.checking=false; }
+}
+document.addEventListener("visibilitychange", function(){ if(document.visibilityState==="visible") checkUpdate(); });
+setInterval(checkUpdate, 20*60000);
+setTimeout(checkUpdate, 5000);
 window.addEventListener("hashchange", function(){ var r=route((location.hash||"").slice(1)); if(r.v!==S.view || (r.sub && r.sub!==S.sub)){ S.view=r.v; if(r.sub) S.sub=r.sub; renderView(); } });
 window.addEventListener("beforeunload", function(){ if(P.timer){ clearTimeout(P.timer); writeLocal(); } });
 
