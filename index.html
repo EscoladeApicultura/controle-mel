@@ -628,6 +628,15 @@ body.gated .fab{display:none}
 .pwt{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:rgba(255,255,255,.06);color:var(--gold2);font-weight:600;font-size:13px;padding:7px 10px;border-radius:9px}
 .gform .gbtn{background:linear-gradient(100deg,var(--gold2),var(--gold));color:var(--ink);font-weight:700}
 .gok{padding:12px 14px;border-radius:12px;border:1px solid rgba(98,214,160,.45);background:rgba(98,214,160,.08);font-size:14px;align-self:stretch;text-align:left}
+
+#gTabs{display:none!important}
+.gold{align-self:stretch;text-align:left;margin-top:6px;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.2)}
+.gold summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--muted);text-align:center;list-style:none}
+.gold summary::-webkit-details-marker{display:none}
+.gold[open] summary{margin-bottom:10px;color:var(--gold2)}
+.gold .gsub{text-align:left;font-size:14px;margin-bottom:10px}
+.gold .linkbtn{margin-top:8px}
+.gopen{margin:10px 0 6px;text-decoration:none}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
 /* ===== versão 2: lançamentos num lugar só ===== */
@@ -738,19 +747,25 @@ html.is-xs .pacts .btn{font-size:12px}
     <h1>Controle Financeiro <span class="goldtxt">Revenda Mel</span></h1>
     <div id="gateLoad"><p class="gsub">Abrindo o seu controle…</p><div class="spin" aria-hidden="true"></div></div>
     <div id="gateLogin" hidden>
-      <div class="gtabs" id="gTabs" role="tablist" aria-label="Entrar ou criar conta"><button type="button" role="tab" data-gm="entrar" aria-selected="true">Entrar</button><button type="button" role="tab" data-gm="criar" aria-selected="false">Criar conta</button></div>
-      <p class="gsub" id="gSub">Entre com o seu nome de usuário e a sua senha.</p>
-      <form id="gForm" class="gform" novalidate>
-        <label class="gf" for="gUser">Nome de usuário<input class="inp" id="gUser" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="30" placeholder="Ex.: maria.silva"></label>
-        <span class="fh" id="gUserHint" hidden>Letras e números, sem espaço e sem acento. Pode usar ponto. Ex.: <b>maria.silva</b></span>
-        <label class="gf" for="gPass" id="gPassL">Senha<span class="pw"><input class="inp" id="gPass" type="password" autocomplete="current-password" placeholder="Mínimo 6 caracteres"><button type="button" class="pwt" data-pw="gPass">Mostrar</button></span></label>
-        <label class="gf" for="gPass2" id="gPass2L" hidden>Repita a senha<input class="inp" id="gPass2" type="password" autocomplete="new-password" placeholder="Digite a mesma senha"></label>
-        <button class="gbtn" id="gGo" type="submit">Entrar</button>
-      </form>
-      <div class="gok" id="gOk" role="status" hidden></div>
-      <button class="linkbtn" type="button" data-gm="esqueci" id="gForgotLink">Esqueci minha senha</button>
-      <button class="linkbtn" type="button" data-gm="entrar" id="gBack" hidden>Voltar para entrar</button>
-      <ol class="gsteps" id="gSteps" hidden><li>Escolha um nome de usuário fácil de lembrar.</li><li>Crie uma senha com pelo menos 6 caracteres.</li><li>Anote os dois: você usa em qualquer celular ou computador.</li></ol>
+      <p class="gsub">Entre com o e-mail da sua conta Google. Seus lançamentos ficam salvos nela e aparecem em qualquer celular ou computador.</p>
+      <button class="gbtn" id="gBtn" type="button"><svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Entrar com Google</button>
+      <div class="gnote" id="gateInApp" hidden>Você abriu o link dentro do WhatsApp ou de outro aplicativo, e o Google não deixa entrar por aqui. Abra no navegador do celular:<br><a class="gbtn gopen" id="gChrome" hidden href="#">Abrir no Chrome</a><span id="gIosTip" hidden>No iPhone: toque nos <b>⋯</b> ou no ícone de compartilhar e escolha <b>Abrir no Safari</b>.</span><button class="linkbtn" id="gCopy" type="button">Copiar o link</button></div>
+      <ol class="gsteps"><li>Toque em <b>Entrar com Google</b>.</li><li>Escolha o e-mail da sua conta Google (o do celular ou outro).</li><li>Pronto: o app abre no seu controle.</li></ol>
+      <details class="gold"><summary>Criei minha conta com usuário e senha</summary>
+        <div class="gtabs" id="gTabs" hidden><button type="button" data-gm="entrar" aria-selected="true">Entrar</button></div>
+        <p class="gsub" id="gSub">Entre com o seu nome de usuário e a sua senha.</p>
+        <form id="gForm" class="gform" novalidate>
+          <label class="gf" for="gUser">Nome de usuário<input class="inp" id="gUser" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="30" placeholder="Ex.: maria.silva"></label>
+          <span class="fh" id="gUserHint" hidden></span>
+          <label class="gf" for="gPass" id="gPassL">Senha<span class="pw"><input class="inp" id="gPass" type="password" autocomplete="current-password" placeholder="Sua senha"><button type="button" class="pwt" data-pw="gPass">Mostrar</button></span></label>
+          <label class="gf" for="gPass2" id="gPass2L" hidden><input class="inp" id="gPass2" type="password"></label>
+          <button class="gbtn" id="gGo" type="submit">Entrar</button>
+        </form>
+        <div class="gok" id="gOk" role="status" hidden></div>
+        <button class="linkbtn" type="button" data-gm="esqueci" id="gForgotLink">Esqueci minha senha</button>
+        <button class="linkbtn" type="button" data-gm="entrar" id="gBack" hidden>Voltar para entrar</button>
+        <ol id="gSteps" hidden></ol>
+      </details>
       <p class="gpriv">Só você vê os seus números. A escola não tem acesso aos seus lançamentos.</p>
     </div>
     <div class="gerr" id="gateErr" role="alert" hidden></div>
@@ -1120,7 +1135,7 @@ function status(kind, txt){
   $("saveTxt").innerHTML = txt;
 }
 function refreshStatus(){
-  if(P.mode==="db") return status("ok","Salvo <span class=\"full\">na sua conta</span>");
+  if(P.mode==="db") return status("ok","Salvo <span class=\"full\">na sua conta Google</span>");
   if(P.mode==="local") return status("ok","Salvo <span class=\"full\">neste aparelho</span>");
   if(P.mode==="ro") return status("err","Não está salvando");
   status("", "Carregando");
@@ -1232,13 +1247,32 @@ function showGate(mode, msg){
   $("gateLoad").hidden = mode!=="load";
   $("gateLogin").hidden = mode!=="login";
   $("gateErr").hidden = !msg; $("gateErr").innerHTML = msg||"";
-  if(mode==="login") setGMode(GMODE);
+  $("gateInApp").hidden = !(mode==="login" && inApp());
+  if(mode==="login"){ setGMode(GMODE); var ch=$("gChrome"); if(ch){ ch.hidden=!isAndroid(); ch.href="intent://"+location.host+location.pathname+"#Intent;scheme=https;package=com.android.chrome;end"; } var it=$("gIosTip"); if(it) it.hidden=isAndroid(); }
 }
 function hideGate(){ $("gate").hidden=true; document.body.classList.remove("gated"); }
 function renderAccount(){
   var u=AUTH.user, el=$("acct");
   if(!el) return;
-  el.innerHTML = u ? '<div class="acctbox"><span class="eyebrow">Conectado como</span><b>'+esc(userFromEmail(u.email)||u.displayName||"")+'</b></div>' : "";
+  el.innerHTML = u ? '<div class="acctbox"><span class="eyebrow">Conectado como</span><b>'+esc(userFromEmail(u.email)||u.displayName||"")+'</b>'+(userFromEmail(u.email)?'':'<small>'+esc(u.email||"")+'</small>')+'</div>' : "";
+}
+async function googleLogin(){
+  if(!fbReady()){ showGate("login","O app ainda não foi configurado. Avise a Escola de Apicultura."); return; }
+  var btn=$("gBtn"); btn.disabled=true;
+  try{
+    var prov = new firebase.auth.GoogleAuthProvider();
+    prov.setCustomParameters({prompt:"select_account"});
+    await firebase.auth().signInWithPopup(prov);
+  }catch(e){
+    var c = e && e.code || "";
+    var msg = "Não foi possível entrar. Tente de novo.";
+    if(c==="auth/popup-closed-by-user"||c==="auth/cancelled-popup-request") msg = "";
+    else if(c==="auth/popup-blocked") msg = "O navegador bloqueou a janela do Google. Toque de novo em <b>Entrar com Google</b>. Se continuar, abra o link no Chrome ou no Safari.";
+    else if(c==="auth/network-request-failed") msg = "Sem internet no momento. Confira a conexão e tente de novo.";
+    else if(c==="auth/unauthorized-domain") msg = "Este endereço ainda não foi liberado no Firebase. Avise a Escola de Apicultura.";
+    else if(c==="auth/operation-not-supported-in-this-environment"||c==="auth/web-storage-unsupported"||inApp()) msg = "Este navegador não permite entrar com o Google. Abra o link no <b>Chrome</b> ou no <b>Safari</b>.";
+    showGate("login", msg);
+  }finally{ btn.disabled=false; }
 }
 /* Login por nome de usuário e senha (conta da escola por trás) */
 var ESCOLA = {u:"escoladeapicultura", d:"gmail.com"};
@@ -1247,6 +1281,7 @@ function userFromEmail(e){ var m=/\+([^@]+)@/.exec(e||""); return m?m[1]:""; }
 function normUser(x){ return String(x||"").trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/\s+/g,"."); }
 function validUser(u){ return /^[a-z0-9][a-z0-9._-]{2,29}$/.test(u) && !/\.\.|[._-]$/.test(u); }
 var GMODE = "entrar";
+function isAndroid(){ return /Android/i.test(navigator.userAgent||""); }
 var GTXT = {
   entrar:{sub:"Entre com o seu nome de usuário e a sua senha.", go:"Entrar"},
   criar:{sub:"Primeira vez aqui? Crie o seu acesso em menos de um minuto.", go:"Criar minha conta"},
@@ -1292,7 +1327,7 @@ async function goLogin(){
   }catch(e){
     var c=e&&e.code||"", m="Não foi possível continuar. Tente de novo.";
     if(c==="auth/email-already-in-use") m="O nome de usuário <b>"+esc(u)+"</b> já está em uso. Escolha outro, por exemplo <b>"+esc(u)+"2</b> ou <b>"+esc(u)+".mel</b>.";
-    else if(/invalid-credential|wrong-password|user-not-found|invalid-login-credentials/.test(c)) m="Usuário ou senha incorretos. Confira e tente de novo. Ainda não tem conta? Toque em <b>Criar conta</b>.";
+    else if(/invalid-credential|wrong-password|user-not-found|invalid-login-credentials/.test(c)) m="Usuário ou senha incorretos. Confira e tente de novo. Ainda não tem conta? Use <b>Entrar com Google</b>.";
     else if(c==="auth/weak-password") m="Senha fraca. Use pelo menos 6 caracteres.";
     else if(c==="auth/too-many-requests") m="Muitas tentativas seguidas. Espere alguns minutos e tente de novo.";
     else if(c==="auth/network-request-failed") m="Sem internet no momento. Confira a conexão e tente de novo.";
@@ -1875,10 +1910,10 @@ var FAQ = [
   ["A contagem do estoque não bate","Em <b>Produtos e estoque</b>, toque em <b>Editar</b> no produto e corrija <b>Quantas unidades você tem agora</b>. O app ajusta o estoque."],
   ["Onde lanço a taxa da maquininha?","<b>Paguei uma despesa</b> → <b>Taxa da maquininha</b>. Pode lançar uma vez no fim do mês com o total."],
   ["O caixa ficou negativo. Estou no prejuízo?","Não necessariamente. No mês em que você compra muita mercadoria o dinheiro sai, mas vira produto. Olhe o <b>Lucro do mês</b>."],
-  ["Onde ficam os meus dados?","Na sua conta do app, guardados com segurança na nuvem. Só você vê os seus números. Ninguém da escola tem acesso."],
-  ["Troquei de celular. Perdi tudo?","Não. Abra o link no celular novo e entre com o mesmo nome de usuário e senha. Tudo aparece como estava."],
-  ["Posso usar no celular e no computador?","Pode. Entre com o mesmo usuário e senha nos dois e os lançamentos aparecem iguais em todos os aparelhos."],
-["Esqueci minha senha. E agora?","Na tela de entrada, toque em <b>Esqueci minha senha</b> e digite o seu nome de usuário. A Escola de Apicultura te manda pelo WhatsApp um link para criar uma senha nova. Seus lançamentos continuam todos lá."],
+  ["Onde ficam os meus dados?","Na sua conta Google, guardados com segurança no Firebase (do Google). Só você vê os seus números. Ninguém da escola tem acesso."],
+  ["Troquei de celular. Perdi tudo?","Não. Abra o link no celular novo e toque em <b>Entrar com Google</b> com a mesma conta. Tudo aparece como estava."],
+  ["Posso usar no celular e no computador?","Pode. Entre com a mesma conta Google nos dois e os lançamentos aparecem iguais em todos os aparelhos."],
+["Criei minha conta com usuário e senha. E agora?","Continua funcionando. Na tela de entrada, toque em <b>Criei minha conta com usuário e senha</b> e entre como antes. Seus lançamentos estão lá."],
 ["Como saio da minha conta?","Toque no botão <b>⋯</b> (canto de cima) e depois em <b>Sair da conta</b>. Use isso se o celular for de outra pessoa."],
   ["Posso continuar usando a planilha do Excel?","Pode. No botão <b>⋯</b> (canto de cima) você traz a sua planilha para o app com <b>Importar minha planilha</b>, e leva os dados de volta com <b>Baixar como planilha</b>."]
 ];
@@ -2625,8 +2660,9 @@ document.addEventListener("click", function(e){
   if((x=c("[data-guide-hide]"))){ lsSet("cfm_guide2_"+x.getAttribute("data-guide-hide"),1); renderView(); return; }
   if((x=c("[data-guide-show]"))){ try{ localStorage.removeItem("cfm_guide2_"+x.getAttribute("data-guide-show")); }catch(_){} renderView(); return; }
   if(c("[data-tour]")){ openTour(0); return; }
+  if(c("#gBtn")){ googleLogin(); return; }
   if((x=c("[data-gm]"))){ setGMode(x.getAttribute("data-gm")); var gu=$("gUser"); if(gu) gu.focus(); return; }
-  if((x=c("[data-pw]"))){ var pi=$(x.getAttribute("data-pw")), sh=pi.type==="password"; pi.type=sh?"text":"password"; x.textContent=sh?"Ocultar":"Mostrar"; var p2i=$("gPass2"); if(p2i) p2i.type=pi.type; return; }
+  if((x=c("[data-pw]"))){ var pi=$(x.getAttribute("data-pw")), sh=pi.type==="password"; pi.type=sh?"text":"password"; x.textContent=sh?"Ocultar":"Mostrar"; return; }
   if(c("#gCopy")){ var lk=location.href.split("#")[0]; try{ navigator.clipboard.writeText(lk).then(function(){ toast("Link copiado. Cole no Chrome ou no Safari."); }, function(){ toast(lk); }); }catch(_){ toast(lk); } return; }
   if((x=c("[data-tour-step]"))){ F.step=Number(x.getAttribute("data-tour-step")); renderTour(); return; }
   if(c("[data-tour-end]")){ endTour(); return; }
