@@ -419,7 +419,7 @@ html.is-m .contarow{grid-template-columns:minmax(0,1fr);gap:6px;padding-bottom:1
   .topr .sel{flex:1;width:auto!important;min-width:0}
   .pill{padding:7px 10px}
   .tabs{position:fixed;top:auto;left:0;right:0;bottom:0;margin:0;border-radius:0;border:0;border-top:1px solid var(--line2);z-index:45;
-    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:6px max(4px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-right,0px));
+    display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding:6px max(4px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-right,0px));
     background:rgba(14,11,8,.96);overflow:visible}
   .tab{flex-direction:column;gap:3px;padding:6px 2px;border-radius:12px;font-size:10.5px;font-weight:600;min-width:0}
   .tab .ti{width:21px;height:21px}
@@ -507,7 +507,7 @@ html.is-m .topr{width:100%;flex-wrap:nowrap}
 html.is-m .topr .sel{flex:1;width:auto!important;min-width:0}
 html.is-m .pill{padding:7px 10px}
 html.is-m .tabs{position:fixed;top:auto;left:0;right:0;bottom:0;margin:0;border-radius:0;border:0;border-top:1px solid var(--line2);z-index:45;
-    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:6px max(4px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-right,0px));
+    display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding:6px max(4px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-right,0px));
     background:rgba(14,11,8,.96);overflow:visible}
 html.is-m .tab{flex-direction:column;gap:3px;padding:6px 2px;border-radius:12px;font-size:10.5px;font-weight:600;min-width:0}
 html.is-m .tab .ti{width:21px;height:21px}
@@ -670,6 +670,8 @@ html.is-m .acts6 .hubc small{font-size:11.5px}
 html.is-m .subtabs button{font-size:12.5px;padding:9px 4px}
 html.is-xs .subtabs button{font-size:11.5px}
 html.is-xs .pacts .btn{font-size:12px}
+.mcard .res.res3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mcard .kv{margin:0}
 </style>
 </head>
 <body>
@@ -715,7 +717,8 @@ html.is-xs .pacts .btn{font-size:12px}
 
   <nav class="tabs" role="tablist" aria-label="Seções">
     <button class="tab" role="tab" data-v="inicio" id="t-inicio" aria-selected="true"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span class="tl">Início</span><span class="ts">Início</span></button>
-    <button class="tab" role="tab" data-v="lancamentos" id="t-lancamentos" aria-selected="false"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h11M4 12h11M4 18h7"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M18.5 16v3M17 17.5h3"/></svg><span class="tl">Lançamentos</span><span class="ts">Lançamentos</span><span class="ct" id="ctIss" hidden></span></button>
+    <button class="tab" role="tab" data-v="lancamentos" id="t-lancamentos" aria-selected="false"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h11M4 12h11M4 18h7"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M18.5 16v3M17 17.5h3"/></svg><span class="tl">Lançamentos</span><span class="ts">Lançar</span><span class="ct" id="ctIss" hidden></span></button>
+    <button class="tab" role="tab" data-v="custos" id="t-custos" aria-selected="false"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v12"/></svg><span class="tl">Custos e preços</span><span class="ts">Custos</span></button>
     <button class="tab" role="tab" data-v="resumo" id="t-resumo" aria-selected="false"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="tl">Resumo do ano</span><span class="ts">Resumo</span></button>
     <button class="tab" role="tab" data-v="ajuda" id="t-ajuda" aria-selected="false"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17.2v.3"/></svg><span class="tl">Como usar</span><span class="ts">Ajuda</span></button>
   </nav>
@@ -1048,7 +1051,7 @@ var C = window.CFM, n = C.n;
 var S = { cfg:C.clone(C.EMPTY_CFG), lanc:[], example:false, hasOwn:false, backup:null,
   view:"inicio", sub:"hist", mes:null, ano:null, lf:{mes:"", q:"", alerta:false} };
 var M = {};
-var VIEWS = ["inicio","lancamentos","resumo","ajuda"];
+var VIEWS = ["inicio","lancamentos","custos","resumo","ajuda"];
 var SUBS = ["hist","prod","contas"];
 
 function compute(){
@@ -1387,6 +1390,7 @@ function renderView(){
   var f = document.activeElement && document.activeElement.id;
   var v = S.view, h="";
   if(v==="lancamentos") h=vLancamentos();
+  else if(v==="custos") h=vCustos();
   else if(v==="resumo") h=vResumo();
   else if(v==="ajuda") h=vAjuda();
   else h=vInicio();
@@ -1402,7 +1406,7 @@ function renderView(){
 function route(v){
   if(v==="painel") return {v:"inicio"};
   if(v==="lancar") return {v:"lancamentos"};
-  if(v==="estoque"||v==="custos") return {v:"lancamentos", sub:"prod"};
+  if(v==="estoque") return {v:"lancamentos", sub:"prod"};
   if(VIEWS.indexOf(v)>=0) return {v:v};
   return {v:"inicio"};
 }
@@ -1679,6 +1683,66 @@ function subContas(){
   return h;
 }
 
+/* ================= CUSTOS E PREÇOS ================= */
+function vCustos(){
+  var mt = M.meta, ativos = M.prods.filter(function(p){ return !p.arq; });
+  var h = '<div class="vhead"><div><div class="eyebrow">Custos e preços</div><h2 class="vt">Quanto custa e quanto sobra</h2><p class="vsub">Para cada produto: quanto ele custa para você, por quanto você vende e quanto sobra em cada venda.</p></div></div>';
+  /* meta */
+  h += '<div class="metaban"><div class="n goldtxt">'+(mt.meta===null||!mt.meta?"—":mt.meta)+'</div><div><div class="eyebrow">Sua meta do mês</div><p>'+
+    (!ativos.length ? 'Cadastre os seus produtos e as contas fixas. O app calcula quantas unidades você precisa vender por mês.'
+     : mt.meta===null ? 'Ainda não dá para calcular: confira se os produtos têm custo e preço, com o preço acima do custo.'
+     : !mt.meta ? 'Cadastre as <b>contas fixas</b> do mês para o app calcular a sua meta.'
+     : 'Vender <b>'+mt.meta+' unidades</b> por mês paga as contas fixas de <b>'+brl(mt.contas)+'</b>. Depois disso, o que sobrar das vendas é lucro.')+
+    '</p></div></div>';
+  if(!ativos.length){
+    h += '<div class="empty">Nenhum produto cadastrado ainda.<br>Cadastre o que você vende: quanto paga, por quanto vende e quantas unidades tem.<br><br><button class="btn sm" type="button" data-hub="novo">Cadastrar produto</button></div>';
+  }else{
+    var nAb = ativos.filter(function(p){ return p.abaixoSug; }).length;
+    h += '<div class="sughint"><b>Como ler cada cartão:</b> <b>Custo</b> é tudo o que você gasta por unidade (produto ou mel, pote, rótulo e frete). <b>Sobra</b> é o preço menos o custo. <b>Preço sugerido</b> é o custo + 75% a 80% de lucro, num valor redondo.'+
+      (nAb?'<div style="margin-top:10px"><button class="btn sm" type="button" data-sug-all="1">'+(nAb>1?'Usar o preço sugerido nos '+nAb+' produtos abaixo dele':'Usar o preço sugerido no produto abaixo dele')+'</button></div>':'')+'</div>';
+    h += '<div class="ch" style="margin:0 0 12px"><span class="hint" style="margin:0">'+ativos.length+' produto'+(ativos.length>1?"s":"")+'</span><button class="btn sm sec" type="button" data-hub="novo">Cadastrar produto</button></div>';
+    h += '<div class="prods">'+ativos.map(custoCard).join("")+'</div>';
+  }
+  /* contas fixas */
+  var cs = S.cfg.contas||[];
+  h += '<div class="secs" style="margin-top:16px"><div class="card"><div class="ch"><h3>Contas fixas do mês</h3><button class="btn sm sec" type="button" data-hub="conta">Adicionar</button></div>'+
+    (cs.length ? '<div class="plist">'+cs.map(function(k){ return '<button class="prow" type="button" data-conta="'+esc(k.id)+'"><span class="pl"><b>'+esc(k.nome)+'</b></span><span class="pr"><b>'+brl(k.valor)+'</b></span></button>'; }).join("")+'</div>'
+      : '<p class="hint">Nenhuma conta fixa cadastrada. Exemplos: DAS do MEI, combustível, celular e internet, contador.</p>')+
+    '<div class="kv" style="margin-top:8px"><div class="strong"><span>Total por mês</span><span>'+brl(mt.contas)+'</span></div></div></div>';
+  h += '<div class="card"><h3>Como a meta é calculada</h3><div class="wf">'+
+    '<div class="wfr" style="grid-template-columns:1fr auto"><span>Contas fixas do mês</span><span class="val">'+brl(mt.contas)+'</span></div>'+
+    '<div class="wfr" style="grid-template-columns:1fr auto"><span>÷ Sobra média por unidade</span><span class="val">'+brl(mt.sobraMedia)+'</span></div>'+
+    '<div class="wfr tot" style="grid-template-columns:1fr auto"><span>= Unidades para vender no mês</span><span class="val">'+(mt.meta===null||!mt.meta?"—":mt.meta)+'</span></div></div>'+
+    '<p class="hint">'+(mt.fonte==="vendas"?'A sobra média vem das suas vendas dos últimos meses.':'Enquanto houver poucas vendas lançadas, a sobra média vem do preço e do custo dos seus produtos.')+'</p></div></div>';
+  return h;
+}
+function custoCard(p){
+  var mf = !(p.preco>0) ? "" : p.margem>=0.4?"ok":(p.margem>=0.2?"w":"c");
+  var linhas = [];
+  if(p.tipo==="balde"){
+    var x = (S.cfg.produtos||[]).filter(function(z){ return z.id===p.key; })[0] || {};
+    linhas.push(["Mel ("+num(x.gramas)+" g"+(n(x.perda)>0?", com "+pct(x.perda).replace(",0%","%")+" de perda":"")+")", p.base]);
+  }else linhas.push(["Produto (preço de compra)", p.base]);
+  if(p.emb) linhas.push(["Pote ou embalagem", p.emb]);
+  if(p.rot) linhas.push(["Rótulo", p.rot]);
+  if(p.frete) linhas.push(["Frete", p.frete]);
+  var st = !(p.custo>0) ? '<div class="flag">Sem custo: toque em <b>Mudar custo ou preço</b>.</div>'
+    : !(p.preco>0) ? '<div class="flag">Sem preço de venda. <button class="linkbtn" type="button" data-sug="'+esc(p.key)+'">Usar o sugerido ('+brl(p.sug)+')</button></div>'
+    : p.preco<p.custo-0.005 ? '<div class="flag c">Preço abaixo do custo: cada venda dá prejuízo de '+brl(-p.sobra)+'.</div>'
+    : p.abaixoSug ? '<div class="sugline"><span class="neg">Abaixo do sugerido.</span> <button class="linkbtn" type="button" data-sug="'+esc(p.key)+'">Usar '+brl(p.sug)+'</button></div>'
+    : '<div class="sugline"><span class="pos">Preço bom: no sugerido ou acima.</span></div>';
+  return '<div class="mcard"><div class="hd"><div><b>'+esc(p.nome)+'</b><small>'+esc(p.tipo==="balde"?"Envasado do balde":"Comprado pronto")+'</small></div>'+(mf?'<span class="chip '+mf+'">Margem '+pct(p.margem)+'</span>':'')+'</div>'+
+    '<div class="kv">'+linhas.map(function(l){ return '<div><span>'+esc(l[0])+'</span><span>'+brl(l[1])+'</span></div>'; }).join("")+
+    '<div class="strong"><span>Custo por unidade</span><span>'+brl(p.custo)+'</span></div></div>'+
+    '<div class="res res3"><div>Você vende por<b>'+brl(p.preco)+'</b></div><div>Sobra por unidade<b class="'+(p.sobra<0?"neg":"")+'">'+brl(p.sobra)+'</b></div><div>Preço sugerido<b class="goldtxt">'+brl(p.sug)+'</b></div></div>'+
+    st+'<button class="btn sm sec" type="button" data-prod="'+esc(p.key)+'" style="width:100%">Mudar custo ou preço</button></div>';
+}
+function applySugAll(){
+  var ks = M.prods.filter(function(p){ return !p.arq && p.abaixoSug; });
+  ks.forEach(function(p){ var x=prodRaw(p.key); if(x){ logHist("Preço de "+x.nome+": "+brl(x.preco)+" → "+brl(p.sug)+" (sugerido)"); x.preco=p.sug; } });
+  if(ks.length){ markCfg(); renderAll(); toast(ks.length+" preço"+(ks.length>1?"s":"")+" atualizado"+(ks.length>1?"s":"")+" para o sugerido"); }
+}
+
 /* ================= RESUMO ================= */
 function vResumo(){
   var anos = {}; S.lanc.forEach(function(l){ if(l.data) anos[l.data.slice(0,4)]=1; }); anos[S.ano]=1; anos[todayISO().slice(0,4)]=1;
@@ -1780,6 +1844,7 @@ function chart(ms, cur){
 var GUIDES = {
   inicio:{t:"Como usar esta tela", s:["Escolha o mês lá em cima, no campo <b>Mês</b>.","O anel mostra quantas unidades você vendeu e a <b>meta</b>: quantas precisa vender para pagar as contas fixas.","Toque em um aviso de <b>Precisa de atenção</b> para resolver."]},
   lancamentos:{t:"Como usar esta tela", s:["Aconteceu algo no negócio? Toque no botão do que aconteceu e responda as perguntas.","Em <b>Produtos e estoque</b> você cadastra o que vende e vê quanto tem de cada um.","Em <b>Histórico</b> você confere e corrige qualquer lançamento: é só tocar nele."]},
+  custos:{t:"Como usar esta tela", s:["Cada cartão mostra a conta do custo de um produto, o preço que você cobra e quanto sobra.","Para mudar um custo ou um preço, toque em <b>Mudar custo ou preço</b> no produto.","Se aparecer <b>Abaixo do sugerido</b>, toque em <b>Usar</b> para trocar pelo preço sugerido."]},
   resumo:{t:"Como ler esta tela", s:["Cada mês do ano aparece separado, e o mês escolhido fica destacado.","<b>Lucro</b> é o que o negócio ganhou. <b>Caixa</b> é o dinheiro que entrou e saiu da conta.","Em mês de compra grande o caixa fica negativo e o lucro não. O dinheiro virou mercadoria."]}
 };
 function guide(v){
@@ -1806,7 +1871,7 @@ var FAQ = [
   ["Dei desconto. Como lanço a venda?","Lance normalmente e, na pergunta do valor, troque pelo que você realmente recebeu. Se ficar abaixo do custo, o app avisa."],
   ["Comprei ou envasei mais produto. O que faço?","Toque em <b>Chegou mercadoria</b>, escolha o produto e diga quantas unidades chegaram. Se pagou agora, informe o valor. Mel envasado de um balde já lançado: deixe o valor em branco."],
   ["Comecei a vender um produto novo","Em <b>Lançamentos → Produtos e estoque</b>, toque em <b>Cadastrar produto</b>. O app calcula o custo, sugere o preço e o produto aparece nas vendas e no estoque."],
-  ["O fornecedor aumentou o preço","Em <b>Produtos e estoque</b>, toque em <b>Editar</b> no produto e mude o custo. O app mostra o novo preço sugerido e você decide se reajusta."],
+  ["O fornecedor aumentou o preço","Na aba <b>Custos e preços</b>, toque em <b>Mudar custo ou preço</b> no produto e mude o custo. O app mostra o novo preço sugerido e você decide se reajusta."],
   ["A contagem do estoque não bate","Em <b>Produtos e estoque</b>, toque em <b>Editar</b> no produto e corrija <b>Quantas unidades você tem agora</b>. O app ajusta o estoque."],
   ["Onde lanço a taxa da maquininha?","<b>Paguei uma despesa</b> → <b>Taxa da maquininha</b>. Pode lançar uma vez no fim do mês com o total."],
   ["O caixa ficou negativo. Estou no prejuízo?","Não necessariamente. No mês em que você compra muita mercadoria o dinheiro sai, mas vira produto. Olhe o <b>Lucro do mês</b>."],
@@ -1821,7 +1886,7 @@ function vAjuda(){
   var h = '<div class="vhead"><div><div class="eyebrow">Como usar</div><h2 class="vt">Seu controle em 3 passos</h2><p class="vsub">Não precisa entender de planilha nem de finanças. Tudo o que aparece no app vem do que você cadastra e lança.</p></div>'+
     '<button class="btn sec" type="button" data-tour="1">Ver as boas-vindas de novo</button></div>';
   var steps = [
-    ["Uma vez, no começo","Cadastre produtos e contas","Em <b>Lançamentos → Produtos e estoque</b>, cadastre o que você vende: quanto custa, por quanto vende e quantas unidades tem. Em <b>Contas fixas</b>, as contas do mês.","prod","Cadastrar produtos"],
+    ["Uma vez, no começo","Cadastre produtos e contas","Na aba <b>Custos e preços</b>, cadastre o que você vende (quanto custa, por quanto vende e quantas unidades tem) e as contas fixas do mês. O app mostra o custo, a sobra e o preço sugerido de cada produto.","custos","Abrir Custos e preços"],
     ["Sempre que acontecer","Lance o que aconteceu","Vendeu, chegou mercadoria, pagou uma conta, deu um brinde? Toque no botão do que aconteceu, em <b>Lançamentos</b> ou no <b>+</b> dourado. Leva menos de um minuto.","new","Fazer um lançamento"],
     ["No fim do mês","Veja o resultado","Na tela <b>Início</b>: unidades vendidas contra a meta, lucro, reserva e avisos. No <b>Resumo</b> você compara os meses do ano.","inicio","Abrir Início"]
   ];
@@ -2567,6 +2632,7 @@ document.addEventListener("click", function(e){
   if(c("[data-tour-end]")){ endTour(); return; }
   if((x=c("[data-tour-go]"))){ var go=x.getAttribute("data-tour-go"); endTour(); setTimeout(function(){ if(VIEWS.indexOf(go)>=0) setView(go); else if(go==="novo") hub("novo"); else act(go); }, 240); return; }
   if((x=c("[data-sug]"))){ applySug(x.getAttribute("data-sug")); return; }
+  if(c("[data-sug-all]")){ applySugAll(); return; }
   if(c("[data-usesug]") && F && F.gen){ readGen(); var cc=custoVals(F.vals); if(cc>0){ F.vals.preco=C.sugerido(cc); delete F.vals.precoRaw; renderGen(); } return; }
   if((x=c("[data-prod]"))){ sheetProduto(x.getAttribute("data-prod")); return; }
   if((x=c("[data-conta]"))){ sheetConta(x.getAttribute("data-conta")); return; }
